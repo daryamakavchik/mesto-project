@@ -1,0 +1,16 @@
+.elements__icon {
+  display: inline-block;
+  width: 22px;
+  height: 19px;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background-image: url(../../../images/heart.svg);
+  background-color: transparent;
+  margin-top: 7px;
+}
+
+.elements__icon:hover {
+  cursor: pointer;
+}
