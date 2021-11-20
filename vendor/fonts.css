@@ -2,14 +2,14 @@
   src: url(./fonts/Inter\ Web/Inter-Regular.woff2) format("woff2"),
     url(./fonts/Inter\ Web/Inter-Regular.2off) format("woff");
   font-family: "Inter";
-  font-weight: normal;
+  font-weight: 400;
 }
 
 @font-face {
-  src: url(./fonts/Inter\ Web/Inter-Bold.woff2) format("woff2"),
-    url(./fonts/Inter\ Web/Inter-Bold.woff) format("woff");
+  src: url(./fonts/Inter\ Web/Inter-Medium.woff2) format("woff2"),
+    url(./fonts/Inter\ Web/Inter-Medium.woff) format("woff");
   font-family: "Inter";
-  font-weight: bold;
+  font-weight: 500;
 }
 
 @font-face {
