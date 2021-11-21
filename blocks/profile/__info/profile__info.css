@@ -2,14 +2,15 @@
   display: grid;
   grid-template-areas:
     "a t b"
-    "a s s";
+    "a s s"
+    "a . .";
 }
 
 @media screen and (max-width: 1024px) {
   .profile__info {
     grid-template-areas:
-      " . a . . "
-      " . t b . "
-      " s s s s";
+      " a a "
+      " t b "
+      " s s";
   }
 }

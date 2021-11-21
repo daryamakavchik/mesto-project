@@ -3,11 +3,12 @@
   height: 120px;
   border-radius: 50%;
   position: relative;
-  top: 3.5px;
+  margin: 0 48.75px;
+  grid-area: a;
 }
 
 @media screen and (max-width: 1024px) {
   .profile__image {
-    margin-left: 18px;
+    margin: 0 auto;
   }
 }
