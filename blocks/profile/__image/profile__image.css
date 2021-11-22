@@ -3,7 +3,7 @@
   height: 120px;
   border-radius: 50%;
   position: relative;
-  margin: 0 48.75px;
+  margin: 0 48.75px 0 0;
   grid-area: a;
 }
 

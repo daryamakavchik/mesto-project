@@ -9,6 +9,10 @@
   margin-left: 36px;
 }
 
+.form__input:last-child{
+  margin-top: 30px;
+}
+
 @media screen and (min-width: 320px) and (max-width: 650px) {
   .form__input {
     margin-left: 22px;
