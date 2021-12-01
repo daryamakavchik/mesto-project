@@ -7,13 +7,21 @@ function openEditForm () {
 }
 editButton.addEventListener('click', openEditForm);
 
-function saveEditForm() {
-  display.classList.add('popup_closed');
+const formInput = document.querySelector('.form');
+const userName = document.querySelector('#username');
+const userNameInfo = document.querySelector('#usernameinfo');
+function formSubmitHandler (evt) {
+  evt.preventDefault(); 
+  let userNameValue = userName.value;
+  let userNameInfoValue = userNameInfo.value;
+  document.querySelector('.profile__title').textContent = userNameValue;
+  document.querySelector('.profile__subtitle').textContent = userNameInfoValue;
 }
-saveButton.addEventListener('click', saveEditForm);
+  formInput.addEventListener('submit', formSubmitHandler);
+  saveButton.addEventListener('click', closeEditForm);
+
 
 let closeButton = document.querySelector('.popup__close-button');
-
 function closeEditForm () {
   display.classList.add('popup_closed');
 }
