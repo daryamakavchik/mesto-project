@@ -1,5 +1,5 @@
 .elements__image {
   width: inherit;
-  object-fit: scale-down;
+  min-height: 282px;
   border-radius: 10px 10px 0 0;
 }

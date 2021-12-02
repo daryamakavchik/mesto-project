@@ -22,6 +22,15 @@
                 <button type="button" class="profile__add-button"><img src="images/plus.svg" alt="Знак плюс" /></button>
             </section>
             <section class="elements">
+                <template id="cardtemplate">
+                    <div class="elements__element">
+                        <img class="elements__image" src=""/>
+                        <div class="elements__caption">
+                            <h2 class="elements__text"></h2>
+                            <button type="button" class="elements__icon"></button>
+                        </div>
+                    </div>
+                </template>
                 <div class="elements__element">
                     <img class="elements__image" src="images/karachaevsk.jpg" alt="Старинный замок" />
                     <div class="elements__caption">
@@ -84,13 +93,13 @@
         </div>
         <div class="popup popup__add-card popup__add-card_closed">
             <div class="popup__container">
-                <form class="form" name="form">
+                <form class="form" name="form" id="addform">
                     <h2 class="form__title">Новое место</h2>
                         <div class="form__input-lines">
-                        <input type="text" name="username" class="form__input" placeholder="Название" minlength="2" maxlength="30" required />
-                        <input type="text" name="usernameinfo" class="form__input" placeholder="Ссылка на картинку" minlength="2" maxlength="100" required />
+                        <input type="text" name="placename" id="placename" class="form__input" placeholder="Название" minlength="2" maxlength="30" required />
+                        <input type="text" name="imagelink" id="imagelink" class="form__input" placeholder="Ссылка на картинку" minlength="2" maxlength="300" required />
                         </div>
-                    <button type="submit" class="form__button">Создать</button>
+                    <button type="submit" class="form__button" id="addcardbutton">Создать</button>
                 </form>
                 <button type="button" class="popup__add-card-close-button"></button>
             </div>
