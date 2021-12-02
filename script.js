@@ -1,4 +1,67 @@
-/*           OPEN FORM          */
+/*const initialCards = [
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+]; 
+
+function cardCreate(name, link){
+  const cardElementBox = document.createElement('div');
+  const cardImage = document.createElement('img');
+  const cardCaption = document.createElement('div');
+  const cardText = document.createElement('h2');
+  const cardLike = document.createElement('button');
+  const elements = document.querySelector('elements');
+ 
+    cardElementBox.classList.add('elements__element');
+    cardImage.classList.add('elements__image');
+    cardCaption.classList.add('elements__caption');
+    cardText.classList.add('elements__text');
+    cardLike.classList.add('elements__icon');
+
+    cardText.textContent = name;
+    cardImage.setAttribute('style', `background-image: url(${link})`);
+
+    cardCaption.appendChild(cardText);
+    cardCaption.appendChild(cardLike);
+    cardElementBox.appendChild(cardImage);
+    cardElementBox.appendChild(cardCaption);
+    elements.appendChild(cardElementBox);
+}
+
+
+function addCard() {
+  for (let i = 0; i < initialCards.length; i++) {
+      const data = initialCards[i];
+      const name = data.name;
+      const link = data.link;
+      cardCreate(name, link);
+  }
+}
+addCard();*/
+
+
+/*           OPEN FORM         */
 let editButton = document.querySelector('.profile__edit-button');
 let displayForm = document.querySelector('.popup_closed');
 function openEditForm () {
@@ -6,7 +69,7 @@ function openEditForm () {
 }
 editButton.addEventListener('click', openEditForm);
 
-/*           EDIT AND SAVE FORM         */
+/*           EDIT AND SAVE FORM       */   
 let saveButton = document.querySelector('.form__button');
 const formInput = document.querySelector('.form');
 const userName = document.querySelector('#username');
@@ -22,7 +85,7 @@ function formSubmitHandler (evt) {
 /*           CLOSE FORM         */
 let closeButton = document.querySelector('.popup__close-button');
 function closeEditForm () {
-  display.classList.add('popup_closed');
+  displayForm.classList.add('popup_closed');
 }
 closeButton.addEventListener('click', closeEditForm);
 
@@ -36,9 +99,10 @@ function openAddForm () {
 addButton.addEventListener('click', openAddForm);
 
 
-/*          EDIT AND SAVE ADD-CARD FORM          */
-let saveAddCardButton = document.querySelector('#addcardbutton'); /*addbutton*/
-const addFormInput = document.querySelector('#addform'); /*addform*/  
+/*          EDIT AND SAVE ADD-CARD FORM         */
+let saveAddCardButton = document.querySelector('#addcardbutton'); /*addbutton
+
+const addFormInput = document.querySelector('#addform'); /*addform**/
 const placeName = document.querySelector('#placename'); /*input placename*/
 const imageLink = document.querySelector('#imagelink'); /*input link*/
 const cardTemplate = document.querySelector('#cardtemplate').content; /*template content*/
@@ -49,7 +113,7 @@ function addFormSubmitHandler (evt) {
   evt.preventDefault(); 
   cardElement.querySelector('.elements__image').src = imageLink.value; /*source of image of a new card = input link*/
   cardElement.querySelector('.elements__text').textContent = placeName.value; /*text of a new card = input text*/
-  elements.prepend(cardElement); /*add template content to elements*/ 
+  elements.prepend(cardElement); /*add template content to elements*/
 }
   addFormInput.addEventListener('submit', addFormSubmitHandler); /*submit addform and insert link+image*/
   saveAddCardButton.addEventListener('click', closeAddCardForm); /*close addform*/
