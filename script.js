@@ -118,10 +118,12 @@ function addFormSubmitHandler (evt) {
   addFormInput.addEventListener('submit', addFormSubmitHandler); /*submit addform and insert link+image*/
   saveAddCardButton.addEventListener('click', closeAddCardForm); /*close addform*/
 
-  const likeButton = document.querySelector('.elements__icon');
-  likeButton.addEventListener('click', function (evt) {
+  const likeButton = document.querySelectorAll('.elements__icon');
+  likeButton.forEach(function(el){
+  el.addEventListener('click', function (evt) {
   evt.target.classList.toggle('elements__icon_active');
    });
+  });
 
 /*           CLOSE ADD-CARD FORM          */
 let closeAddCardButton = document.querySelector('.popup__add-card-close-button');
