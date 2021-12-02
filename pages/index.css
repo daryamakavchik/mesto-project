@@ -59,3 +59,9 @@
 @import url(../blocks/form/__input/form__input.css);
 
 @import url(../blocks/form/__button/form__button.css);
+
+@import url(../blocks/popup/__add-card/popup__add-card.css);
+
+@import url(../blocks/popup/__add-card/_closed/popup__add-card_closed.css);
+
+@import url(../blocks/popup/__add-card-close-button/popup__add-card-close-button.css);
