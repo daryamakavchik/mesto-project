@@ -100,7 +100,7 @@ addButton.addEventListener('click', openAddForm);
 
 
 /*          EDIT AND SAVE ADD-CARD FORM         */
-let saveAddCardButton = document.querySelector('#addcardbutton'); /*addbutton
+let saveAddCardButton = document.querySelector('#addcardbutton'); /*addbutton*/
 
 const addFormInput = document.querySelector('#addform'); /*addform**/
 const placeName = document.querySelector('#placename'); /*input placename*/
@@ -113,10 +113,15 @@ function addFormSubmitHandler (evt) {
   evt.preventDefault(); 
   cardElement.querySelector('.elements__image').src = imageLink.value; /*source of image of a new card = input link*/
   cardElement.querySelector('.elements__text').textContent = placeName.value; /*text of a new card = input text*/
-  elements.prepend(cardElement); /*add template content to elements*/
+  elements.prepend(cardElement);  /*add template content to elements*/
 }
   addFormInput.addEventListener('submit', addFormSubmitHandler); /*submit addform and insert link+image*/
   saveAddCardButton.addEventListener('click', closeAddCardForm); /*close addform*/
+
+  const likeButton = document.querySelector('.elements__icon');
+  likeButton.addEventListener('click', function (evt) {
+  evt.target.classList.toggle('elements__icon_active');
+   });
 
 /*           CLOSE ADD-CARD FORM          */
 let closeAddCardButton = document.querySelector('.popup__add-card-close-button');
