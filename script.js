@@ -1,4 +1,4 @@
-/*const initialCards = [
+const initialCards = [
   {
     name: 'Архыз',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
@@ -25,41 +25,46 @@
   }
 ]; 
 
-function cardCreate(name, link){
-  const cardElementBox = document.createElement('div');
-  const cardImage = document.createElement('img');
-  const cardCaption = document.createElement('div');
-  const cardText = document.createElement('h2');
-  const cardLike = document.createElement('button');
-  const elements = document.querySelector('elements');
- 
-    cardElementBox.classList.add('elements__element');
-    cardImage.classList.add('elements__image');
-    cardCaption.classList.add('elements__caption');
-    cardText.classList.add('elements__text');
-    cardLike.classList.add('elements__icon');
+initialCards.forEach(cardCreate);
 
-    cardText.textContent = name;
-    cardImage.setAttribute('style', `background-image: url(${link})`);
+/*            CREATE CARDS FROM ARRAY             */
+function cardCreate(element){
+  const elements = document.querySelector('.elements'); 
+  const cardElement = document.createElement('div');
+  const cardImageBox = document.createElement('div');
+  const cardImage = document.createElement('img'); 
+  const cardDeleteButton = document.createElement('button');
+  cardImageBox.setAttribute('style', `background-image: url(${element.link})`);
+  const cardCaption = document.createElement('div'); 
+  const cardText = document.createElement('h2'); 
+  cardText.textContent = element.name;
+  const cardLike = document.createElement('button'); 
+  
+  cardElement.classList.add('elements__element');
+  cardImageBox.classList.add('elements__image-box');
+  cardImage.classList.add('elements__image');
+  cardDeleteButton.classList.add('elements__delete-button');
+  cardCaption.classList.add('elements__caption');
+  cardText.classList.add('elements__text');
+  cardLike.classList.add('elements__icon');
 
-    cardCaption.appendChild(cardText);
-    cardCaption.appendChild(cardLike);
-    cardElementBox.appendChild(cardImage);
-    cardElementBox.appendChild(cardCaption);
-    elements.appendChild(cardElementBox);
+  cardImageBox.appendChild(cardImage);
+  cardImageBox.appendChild(cardDeleteButton);
+  cardCaption.appendChild(cardText);
+  cardCaption.appendChild(cardLike);
+  cardElement.appendChild(cardImageBox);
+  cardElement.appendChild(cardCaption);
+  elements.appendChild(cardElement);
+
+  cardDeleteButton.addEventListener('click', cardDelete);
+};
+
+/*           DELETE CARD        */   /*!!!!!!!!!!!!!!!!!!!!*/
+function cardDelete(event){
+  const elements = document.querySelector('.elements');
+  elements.removeChild(event.target.parentNode.parentNode);
+  event.stopPropagation();
 }
-
-
-function addCard() {
-  for (let i = 0; i < initialCards.length; i++) {
-      const data = initialCards[i];
-      const name = data.name;
-      const link = data.link;
-      cardCreate(name, link);
-  }
-}
-addCard();*/
-
 
 /*           OPEN FORM         */
 let editButton = document.querySelector('.profile__edit-button');
@@ -124,6 +129,7 @@ function addFormSubmitHandler (evt) {
   evt.target.classList.toggle('elements__icon_active');
    });
   });
+
 
 /*           CLOSE ADD-CARD FORM          */
 let closeAddCardButton = document.querySelector('.popup__add-card-close-button');
