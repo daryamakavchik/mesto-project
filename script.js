@@ -108,22 +108,28 @@ addButton.addEventListener('click', openAddForm);
 let saveAddCardButton = document.querySelector('#addcardbutton'); /*addbutton*/
 
 const addFormInput = document.querySelector('#addform'); /*addform**/
-const placeName = document.querySelector('#placename'); /*input placename*/
-const imageLink = document.querySelector('#imagelink'); /*input link*/
-const cardTemplate = document.querySelector('#cardtemplate').content; /*template content*/
 const elements = document.querySelector('.elements'); /*where to place template*/
-const cardElement = elements.querySelector('.elements__element').cloneNode(true); /*copy template content*/
 
-function addFormSubmitHandler (evt) {
-  evt.preventDefault(); 
-  cardElement.querySelector('.elements__image').src = imageLink.value; /*source of image of a new card = input link*/
-  cardElement.querySelector('.elements__text').textContent = placeName.value; /*text of a new card = input text*/
-  elements.prepend(cardElement);  /*add template content to elements*/
-}
-  addFormInput.addEventListener('submit', addFormSubmitHandler); /*submit addform and insert link+image*/
-  saveAddCardButton.addEventListener('click', closeAddCardForm); /*close addform*/
+  function addNewCard (placeName, imageLink) {
+  const cardTemplate = document.querySelector('#cardtemplate').content; 
+  const cardElement = cardTemplate.querySelector('.elements__element').cloneNode(true);
+  cardElement.querySelector('.elements__image').src = imageLink;
+  cardElement.querySelector('.elements__text').textContent = placeName;
+  elements.prepend(cardElement);  /*add template content to elements*/ 
+  }
 
-  const likeButton = document.querySelectorAll('.elements__icon');
+ /*close addform and insert text+link*/
+  saveAddCardButton.addEventListener('click', function(){
+  const imagelink = document.querySelector('#imagelink');
+  const placename = document.querySelector('#placename');
+  addNewCard(placename.value, imagelink.value); 
+  imagelink.value = '',
+  placename.value = '';
+  closeAddCardForm();
+});
+ 
+
+  const likeButton = document.querySelectorAll('.elements__icon');  /*like button*/
   likeButton.forEach(function(el){
   el.addEventListener('click', function (evt) {
   evt.target.classList.toggle('elements__icon_active');
