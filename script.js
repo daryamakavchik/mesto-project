@@ -104,9 +104,8 @@ function openAddForm () {
 addButton.addEventListener('click', openAddForm);
 
 
-/*          EDIT AND SAVE ADD-CARD FORM         */
+/*          ADD NEW CARD         */
 let saveAddCardButton = document.querySelector('#addcardbutton'); /*addbutton*/
-
 const addFormInput = document.querySelector('#addform'); /*addform**/
 const elements = document.querySelector('.elements'); /*where to place template*/
 
@@ -115,13 +114,11 @@ const elements = document.querySelector('.elements'); /*where to place template*
   const cardElement = cardTemplate.querySelector('.elements__element').cloneNode(true);
   cardElement.querySelector('.elements__image').src = imageLink;
   cardElement.querySelector('.elements__text').textContent = placeName;
-  cardElement.querySelector('.elements__icon').addEventListener('click', function(evt){
-    evt.target.classList.toggle('elements__icon_active');
-  });
-  elements.prepend(cardElement);  /*add template content to elements*/ 
+  cardElement.querySelector('.elements__icon').addEventListener('click', cardLike);
+  cardElement.querySelector('.elements__delete-button').addEventListener('click', cardDelete);
+  elements.prepend(cardElement); 
   }
 
- /*close addform and insert text+link*/
   saveAddCardButton.addEventListener('click', function(){
   const imagelink = document.querySelector('#imagelink');
   const placename = document.querySelector('#placename');
@@ -131,9 +128,9 @@ const elements = document.querySelector('.elements'); /*where to place template*
   closeAddCardForm();
 });
  
-
-  const likeButton = document.querySelectorAll('.elements__icon');  /*like button*/
-  likeButton.forEach(function(el){
+/*                  LIKE               */
+  const likeButton = document.querySelectorAll('.elements__icon');  
+  likeButton.forEach(function cardLike(el){
   el.addEventListener('click', function (evt) {
   evt.target.classList.toggle('elements__icon_active');
    });
