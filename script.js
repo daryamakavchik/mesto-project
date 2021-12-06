@@ -115,6 +115,9 @@ const elements = document.querySelector('.elements'); /*where to place template*
   const cardElement = cardTemplate.querySelector('.elements__element').cloneNode(true);
   cardElement.querySelector('.elements__image').src = imageLink;
   cardElement.querySelector('.elements__text').textContent = placeName;
+  cardElement.querySelector('.elements__icon').addEventListener('click', function(evt){
+    evt.target.classList.toggle('elements__icon_active');
+  });
   elements.prepend(cardElement);  /*add template content to elements*/ 
   }
 
