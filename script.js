@@ -65,13 +65,13 @@ function cardCreate(element){
   const popUpImageCaption = document.querySelector('.popup-image__caption');
   
   cardImageBox.addEventListener('click', function() {
-    popUpImageBox.classList.remove('popup-image_closed');
+    popUpImageBox.classList.add('popup-image_opened');
     popUpImage.src = element.link;
     popUpImageCaption.textContent = element.name;
   });
   
   popUpImageCloseButton.addEventListener('click', function() {
-  popUpImageBox.classList.add('popup-image_closed');
+  popUpImageBox.classList.remove('popup-image_opened');
 
 });
 
