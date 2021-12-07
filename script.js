@@ -57,7 +57,26 @@ function cardCreate(element){
   elements.appendChild(cardElement);
 
   cardDeleteButton.addEventListener('click', cardDelete);
-};
+  
+  /*           OPEN IMAGE POPUP         */
+  const popUpImageCloseButton = document.querySelector('.popup-image__close-button');
+  const popUpImageBox = document.querySelector('.popup-image');
+  const popUpImage = document.querySelector('.popup-image__image');
+  const popUpImageCaption = document.querySelector('.popup-image__caption');
+  
+  cardImageBox.addEventListener('click', function() {
+    popUpImageBox.classList.remove('popup-image_closed');
+    popUpImage.src = element.link;
+    popUpImageCaption.textContent = element.name;
+  });
+  
+  popUpImageCloseButton.addEventListener('click', function() {
+  popUpImageBox.classList.add('popup-image_closed');
+
+});
+
+}
+
 
 /*           DELETE CARD        */   /*!!!!!!!!!!!!!!!!!!!!*/
 function cardDelete(event){
@@ -68,9 +87,9 @@ function cardDelete(event){
 
 /*           OPEN FORM         */
 let editButton = document.querySelector('.profile__edit-button');
-let displayForm = document.querySelector('.popup_closed');
+let displayForm = document.querySelector('.popup');
 function openEditForm () {
-  displayForm.classList.remove('popup_closed');
+  displayForm.classList.add('popup_opened');
 }
 editButton.addEventListener('click', openEditForm);
 
@@ -90,7 +109,7 @@ function formSubmitHandler (evt) {
 /*           CLOSE FORM         */
 let closeButton = document.querySelector('.popup__close-button');
 function closeEditForm () {
-  displayForm.classList.add('popup_closed');
+  displayForm.classList.remove('popup_opened');
 }
 closeButton.addEventListener('click', closeEditForm);
 
@@ -99,7 +118,7 @@ closeButton.addEventListener('click', closeEditForm);
 let addButton = document.querySelector('.profile__add-button');
 let displayAddCard = document.querySelector('.popup__add-card');
 function openAddForm () {
-  displayAddCard.classList.remove('popup__add-card_closed');
+  displayAddCard.classList.add('popup__add-card_opened');
 }
 addButton.addEventListener('click', openAddForm);
 
@@ -140,9 +159,10 @@ const elements = document.querySelector('.elements'); /*where to place template*
 /*           CLOSE ADD-CARD FORM          */
 let closeAddCardButton = document.querySelector('.popup__add-card-close-button');
 function closeAddCardForm () {
-  displayAddCard.classList.add('popup__add-card_closed');
+  displayAddCard.classList.remove('popup__add-card_opened');
 }
 closeAddCardButton.addEventListener('click', closeAddCardForm);
+
 
 
 
