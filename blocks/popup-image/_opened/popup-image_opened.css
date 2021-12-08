@@ -1,14 +1,6 @@
-.popup-image_opened{
-    display: flex;
-  }
-  
-  .popup-image_opened > .popup-image__content {
-    visibility: hidden;
-    opacity: 0;
-    transition: visibility 0s, opacity 0.5s linear;
-  }
-  
-  .popup-image_opened:hover > .popup-image__content {
-    visibility: visible;
-    opacity: 1;
-  }
+.popup-image_opened {
+  display: flex;
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.5s linear;
+}

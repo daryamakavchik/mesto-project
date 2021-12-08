@@ -72,20 +72,17 @@ function cardCreate(element){
   
   popUpImageCloseButton.addEventListener('click', function() {
   popUpImageBox.classList.remove('popup-image_opened');
-
 });
-
 }
 
-
-/*           DELETE CARD        */   /*!!!!!!!!!!!!!!!!!!!!*/
+/*           DELETE CARD        */  
 function cardDelete(event){
   const elements = document.querySelector('.elements');
   elements.removeChild(event.target.parentNode.parentNode);
   event.stopPropagation();
 }
 
-/*           OPEN FORM         */
+/*           OPEN MAIN FORM         */
 let editButton = document.querySelector('.profile__edit-button');
 let displayForm = document.querySelector('.popup');
 function openEditForm () {
@@ -93,7 +90,7 @@ function openEditForm () {
 }
 editButton.addEventListener('click', openEditForm);
 
-/*           EDIT AND SAVE FORM       */   
+/*           EDIT AND SAVE MAIN FORM       */   
 let saveButton = document.querySelector('.form__button');
 const formInput = document.querySelector('.form');
 const userName = document.querySelector('#username');
@@ -102,17 +99,18 @@ function formSubmitHandler (evt) {
   evt.preventDefault(); 
   document.querySelector('.profile__title').textContent = userName.value;
   document.querySelector('.profile__subtitle').textContent = userNameInfo.value;
+  closeEditForm();
 }
   formInput.addEventListener('submit', formSubmitHandler);
-  saveButton.addEventListener('click', closeEditForm);
 
-/*           CLOSE FORM         */
+/*           CLOSE MAIN FORM         */
 let closeButton = document.querySelector('.popup__close-button');
 function closeEditForm () {
+  userName.value = '';
+  userNameInfo.value = '';
   displayForm.classList.remove('popup_opened');
 }
 closeButton.addEventListener('click', closeEditForm);
-
 
 /*          OPEN ADD-CARD FORM          */
 let addButton = document.querySelector('.profile__add-button');
@@ -122,39 +120,30 @@ function openAddForm () {
 }
 addButton.addEventListener('click', openAddForm);
 
-
-/*          ADD NEW CARD         */
-let saveAddCardButton = document.querySelector('#addcardbutton'); /*addbutton*/
-const addFormInput = document.querySelector('#addform'); /*addform**/
-const elements = document.querySelector('.elements'); /*where to place template*/
-
-  function addNewCard (placeName, imageLink) {
+/*          EDIT AND SAVE ADD-CARD FORM      */
+const saveAddCardButton = document.querySelector('#addcardbutton'); 
+const addFormInput = document.querySelector('#addform');
+const imagelink = document.querySelector('#imagelink');
+const placename = document.querySelector('#placename');
+  function addFormSubmitHandler(evt){
+  evt.preventDefault();
+  const elements = document.querySelector('.elements'); 
   const cardTemplate = document.querySelector('#cardtemplate').content; 
-  const cardElement = cardTemplate.querySelector('.elements__element').cloneNode(true);
-  cardElement.querySelector('.elements__image').src = imageLink;
-  cardElement.querySelector('.elements__text').textContent = placeName;
-  cardElement.querySelector('.elements__icon').addEventListener('click', cardLike);
-  cardElement.querySelector('.elements__delete-button').addEventListener('click', cardDelete);
-  elements.prepend(cardElement); 
-  }
-
-  saveAddCardButton.addEventListener('click', function(){
+  const cardAddedElement = cardTemplate.querySelector('.elements__element').cloneNode(true);
   const imagelink = document.querySelector('#imagelink');
   const placename = document.querySelector('#placename');
-  addNewCard(placename.value, imagelink.value); 
-  imagelink.value = '',
-  placename.value = '';
+  cardAddedElement.querySelector('.elements__image').src = imagelink.value;
+  cardAddedElement.querySelector('.elements__text').textContent = placename.value;
+  elements.prepend(cardAddedElement); 
   closeAddCardForm();
-});
- 
-/*                  LIKE               */
-  const likeButton = document.querySelectorAll('.elements__icon');  
-  likeButton.forEach(function cardLike(el){
-  el.addEventListener('click', function (evt) {
-  evt.target.classList.toggle('elements__icon_active');
-   });
-  });
-
+  imagelink.value = '';
+  placename.value = '';
+  cardAddedElement.querySelector('.elements__icon').addEventListener('click', function (evt) {
+    evt.target.classList.toggle('elements__icon_active');
+     });
+  cardAddedElement.querySelector('.elements__delete-button').addEventListener('click', cardDelete);
+  }
+addFormInput.addEventListener('submit', addFormSubmitHandler);
 
 /*           CLOSE ADD-CARD FORM          */
 let closeAddCardButton = document.querySelector('.popup__add-card-close-button');
@@ -163,6 +152,10 @@ function closeAddCardForm () {
 }
 closeAddCardButton.addEventListener('click', closeAddCardForm);
 
-
-
-
+/*                  LIKE               */
+const likeButton = document.querySelectorAll('.elements__icon'); 
+likeButton.forEach(function cardLike(el){
+  el.addEventListener('click', function (evt) {
+  evt.target.classList.toggle('elements__icon_active');
+   });
+  });

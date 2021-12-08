@@ -1,13 +1,6 @@
-.popup__add-card_opened{
+.popup__add-card_opened {
   display: flex;
-}
-.popup__add-card_opened > .popup__container {
-  visibility: hidden;
-  opacity: 0;
-  transition: visibility 0s, opacity 0.5s linear;
-}
-
-.popup__add-card_opened:hover > .popup__container {
   visibility: visible;
   opacity: 1;
+  transition: opacity 0.5s linear;
 }

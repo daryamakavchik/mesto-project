@@ -1,4 +1,4 @@
-.popup-image__close-button{
+.popup-image__close-button {
   background-image: url(../../../images/close.svg);
   background-color: transparent;
   background-position: 50%;
@@ -23,6 +23,6 @@
     width: 20px;
     height: 20px;
     right: 0;
-    top: -16px;
+    top: -36px;
   }
 }
