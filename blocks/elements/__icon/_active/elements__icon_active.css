@@ -1,5 +1,5 @@
-/*.elements__icon_active{
+.elements__icon_active {
   width: 22px;
   height: 19px;
-  background-image: url(../images/heart_active.svg);
-}*/
+  background-image: url(../../../../images/heart_active.svg);
+}

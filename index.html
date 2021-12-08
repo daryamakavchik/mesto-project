@@ -1,87 +1,129 @@
 <!DOCTYPE html>
 <html lang="ru">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Место</title>
-        <link rel="stylesheet" href="./pages/index.css" />
-    </head>
-    <body class="page">
-        <header class="header">
-            <img class="header__logo" src="images/Vector.svg.svg" alt="Логотип проекта Место" />
-        </header>
-        <hr class="header__line" />
-        <main>
-            <section class="profile">
-                <div class="profile__info">
-                    <img class="profile__image" src="images/image.jpg" alt="Жак-Ив Кусто" />
-                    <h1 class="profile__title">Жак-Ив Кусто</h1>
-                    <button type="button" class="profile__edit-button"><img src="images/pencil.svg" alt="Карандаш" /></button>
-                    <p class="profile__subtitle">Исследователь океана</p>
-                </div>
-                <button type="button" class="profile__add-button"><img src="images/plus.svg" alt="Знак плюс" /></button>
-            </section>
-            <section class="elements">
-                <div class="elements__element">
-                    <img class="elements__image" src="images/karachaevsk.jpg" alt="Старинный замок" />
-                    <div class="elements__caption">
-                        <h2 class="elements__text">Карачаевск</h2>
-                        <button type="button" class="elements__icon"></button>
-                    </div>
-                </div>
-                <div class="elements__element">
-                    <img class="elements__image" src="images/elbrus.jpg" alt="Горный склон" />
-                    <div class="elements__caption">
-                        <h2 class="elements__text">Гора Эльбрус</h2>
-                        <button type="button" class="elements__icon"></button>
-                    </div>
-                </div>
-                <div class="elements__element">
-                    <img class="elements__image" src="images/dombai.jpg" alt="Горные вершины" />
-                    <div class="elements__caption">
-                        <h2 class="elements__text">Домбай</h2>
-                        <button type="button" class="elements__icon"></button>
-                    </div>
-                </div>
-                <div class="elements__element">
-                    <img class="elements__image" src="images/elbrus.jpg" alt="Горный склон" />
-                    <div class="elements__caption">
-                        <h2 class="elements__text">Гора Эльбрус</h2>
-                        <button type="button" class="elements__icon"></button>
-                    </div>
-                </div>
-                <div class="elements__element">
-                    <img class="elements__image" src="images/dombai.jpg" alt="Горные вершины" />
-                    <div class="elements__caption">
-                        <h2 class="elements__text">Домбай</h2>
-                        <button type="button" class="elements__icon"></button>
-                    </div>
-                </div>
-                <div class="elements__element">
-                    <img class="elements__image" src="images/karachaevsk.jpg" alt="Старинный замок" />
-                    <div class="elements__caption">
-                        <h2 class="elements__text">Карачаево-Черкессия</h2>
-                        <button type="button" class="elements__icon"></button>
-                    </div>
-                </div>
-            </section>
-        </main>
-        <footer class="footer">
-            <p class="footer__copyright">© 2020 Mesto Russia</p>
-        </footer>
-        <div class="popup popup_closed">
-            <div class="popup__container">
-                <form class="form" name="form">
-                    <h2 class="form__title">Редактировать профиль</h2>
-                        <div class="form__input-lines">
-                        <input type="text" name="username" id="username" class="form__input" placeholder="Жак Ив Кусто" minlength="2" maxlength="30" required />
-                        <input type="text" name="usernameinfo" id="usernameinfo" class="form__input" placeholder="Исследователь океана" minlength="2" maxlength="100" required />
-                        </div>
-                    <button type="submit" class="form__button">Сохранить</button>
-                </form>
-                <button type="button" class="popup__close-button"></button>
-            </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Место</title>
+    <link rel="stylesheet" href="./pages/index.css" />
+  </head>
+  <body class="page">
+    <header class="header">
+      <img
+        class="header__logo"
+        src="images/Vector.svg.svg"
+        alt="Логотип проекта Место"
+      />
+    </header>
+    <hr class="header__line" />
+    <main>
+      <section class="profile">
+        <div class="profile__info">
+          <img
+            class="profile__image"
+            src="images/image.jpg"
+            alt="Жак-Ив Кусто"
+          />
+          <h1 class="profile__title">Жак-Ив Кусто</h1>
+          <button type="button" class="profile__edit-button">
+            <img src="images/pencil.svg" alt="Карандаш" />
+          </button>
+          <p class="profile__subtitle">Исследователь океана</p>
         </div>
-        <script src="./script.js"></script>
-    </body>
+        <button type="button" class="profile__add-button">
+          <img src="images/plus.svg" alt="Знак плюс" />
+        </button>
+      </section>
+      <section class="elements">
+        <template id="cardtemplate">
+          <div class="elements__element">
+            <div class="elements__image-box">
+              <img class="elements__image" src="" />
+              <button class="elements__delete-button"></button>
+            </div>
+            <div class="elements__caption">
+              <h2 class="elements__text"></h2>
+              <button type="button" class="elements__icon"></button>
+            </div>
+          </div>
+        </template>
+      </section>
+    </main>
+    <footer class="footer">
+      <p class="footer__copyright">© 2020 Mesto Russia</p>
+    </footer>
+    <div class="popup">
+      <div class="popup__container">
+        <form class="form" name="form">
+          <h2 class="form__title">Редактировать профиль</h2>
+          <div class="form__input-lines">
+            <input
+              type="text"
+              name="username"
+              id="username"
+              class="form__input"
+              placeholder="Жак Ив Кусто"
+              minlength="2"
+              maxlength="30"
+              required
+            />
+            <input
+              type="text"
+              name="usernameinfo"
+              id="usernameinfo"
+              class="form__input"
+              placeholder="Исследователь океана"
+              minlength="2"
+              maxlength="100"
+              required
+            />
+          </div>
+          <button type="submit" class="form__button">Сохранить</button>
+        </form>
+        <button type="button" class="popup__close-button"></button>
+      </div>
+    </div>
+    <div class="popup popup__add-card">
+      <div class="popup__container">
+        <form class="form" name="form" id="addform">
+          <h2 class="form__title">Новое место</h2>
+          <div class="form__input-lines">
+            <input
+              type="text"
+              name="placename"
+              id="placename"
+              class="form__input"
+              placeholder="Название"
+              minlength="2"
+              maxlength="30"
+              required
+            />
+            <input
+              type="text"
+              name="imagelink"
+              id="imagelink"
+              class="form__input"
+              placeholder="Ссылка на картинку"
+              minlength="2"
+              maxlength="300"
+              required
+            />
+          </div>
+          <button type="submit" class="form__button" id="addcardbutton">
+            Создать
+          </button>
+        </form>
+        <button type="button" class="popup__add-card-close-button"></button>
+      </div>
+    </div>
+    <div class="popup popup-image">
+      <div class="popup-image__content">
+        <button type="button" class="popup-image__close-button"></button>
+        <figure class="popup-image__figure">
+          <img class="popup-image__image" />
+          <figcaption class="popup-image__caption"></figcaption>
+        </figure>
+      </div>
+    </div>
+    <script src="./scripts/script.js"></script>
+  </body>
 </html>
