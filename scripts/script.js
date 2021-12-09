@@ -29,17 +29,17 @@ initialCards.forEach(cardCreate);
 
 /*            CREATE CARDS FROM ARRAY             */
 function cardCreate(element){
-  const elements = document.querySelector('.elements'); 
-  const cardElement = document.createElement('div');
-  const cardImageBox = document.createElement('div');
-  const cardImage = document.createElement('img'); 
-  const cardDeleteButton = document.createElement('button');
-  cardImageBox.setAttribute('style', `background-image: url(${element.link})`);
-  const cardCaption = document.createElement('div'); 
-  const cardText = document.createElement('h2'); 
+const elements = document.querySelector('.elements'); 
+const cardElement = document.createElement('div');
+const cardImageBox = document.createElement('div');
+const cardImage = document.createElement('img'); 
+const cardDeleteButton = document.createElement('button');
+const cardCaption = document.createElement('div'); 
+const cardText = document.createElement('h2'); 
+const cardLike = document.createElement('button'); 
+  cardImage.src = element.link;
   cardText.textContent = element.name;
-  const cardLike = document.createElement('button'); 
-  
+
   cardElement.classList.add('elements__element');
   cardImageBox.classList.add('elements__image-box');
   cardImage.classList.add('elements__image');
@@ -57,23 +57,23 @@ function cardCreate(element){
   elements.appendChild(cardElement);
 
   cardDeleteButton.addEventListener('click', cardDelete);
-  
-  /*           OPEN IMAGE POPUP         */
-  const popUpImageCloseButton = document.querySelector('.popup-image__close-button');
-  const popUpImageBox = document.querySelector('.popup-image');
-  const popUpImage = document.querySelector('.popup-image__image');
-  const popUpImageCaption = document.querySelector('.popup-image__caption');
-  
-  cardImageBox.addEventListener('click', function() {
-    popUpImageBox.classList.add('popup-image_opened');
-    popUpImage.src = element.link;
-    popUpImageCaption.textContent = element.name;
-  });
-  
-  popUpImageCloseButton.addEventListener('click', function() {
-  popUpImageBox.classList.remove('popup-image_opened');
+
+    /*           OPEN IMAGE POPUP         */
+const popUpImageCloseButton = document.querySelector('.popup-image__close-button');
+const popUpImageBox = document.querySelector('.popup-image');
+const popUpImage = document.querySelector('.popup-image__image');
+const popUpImageCaption = document.querySelector('.popup-image__caption');
+
+cardImageBox.addEventListener('click', function() {
+  popUpImageBox.classList.add('popup-image_opened');
+  popUpImage.src = element.link;
+  popUpImageCaption.textContent = element.name;
 });
+popUpImageCloseButton.addEventListener('click', function() {
+  popUpImageBox.classList.remove('popup-image_opened');
+  });
 }
+
 
 /*           DELETE CARD        */  
 function cardDelete(event){
@@ -142,6 +142,24 @@ const placename = document.querySelector('#placename');
     evt.target.classList.toggle('elements__icon_active');
      });
   cardAddedElement.querySelector('.elements__delete-button').addEventListener('click', cardDelete);
+
+    /*           OPEN IMAGE POPUP         */
+    const popUpImageCloseButton = document.querySelector('.popup-image__close-button');
+    const popUpImageBox = document.querySelector('.popup-image');
+    const popUpImage = document.querySelector('.popup-image__image');
+    const popUpImageCaption = document.querySelector('.popup-image__caption');
+    const cardImageBox = document.querySelector('.elements__image-box');
+    const cardImage = document.querySelector('.elements__image');
+    const cardText = document.querySelector('.elements__text');
+    cardImageBox.addEventListener('click', function() {
+      popUpImageBox.classList.add('popup-image_opened');
+      popUpImage.src = cardImage.src;
+      popUpImageCaption.textContent = cardText.textContent;
+    });
+    popUpImageCloseButton.addEventListener('click', function() {
+      popUpImageBox.classList.remove('popup-image_opened');
+      });
+
   }
 addFormInput.addEventListener('submit', addFormSubmitHandler);
 
