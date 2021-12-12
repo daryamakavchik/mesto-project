@@ -4,5 +4,6 @@
   max-width: 75vw;
   max-height: 75vh;
   align-self: center;
-  object-fit: cover;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
