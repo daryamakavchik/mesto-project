@@ -4,8 +4,9 @@
   "description": "interactive website",
   "main": "index.js",
   "scripts": {
-    "test": "echo"
-  },
+    "build": "rd /s /q dist && webpack --mode-production",
+    "dev": "webpack serve"
+  } ,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/daryamakavchik/mesto-project.git"
@@ -15,5 +16,9 @@
   "bugs": {
     "url": "https://github.com/daryamakavchik/mesto-project/issues"
   },
-  "homepage": "https://github.com/daryamakavchik/mesto-project#readme"
+  "homepage": "https://github.com/daryamakavchik/mesto-project#readme",
+  "devDependencies": {
+    "webpack": "^5.70.0",
+    "webpack-cli": "^4.9.2"
+  }
 }
