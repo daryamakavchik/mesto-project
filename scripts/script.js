@@ -193,8 +193,7 @@ const showInputError = (formElement, inputElement, errorMessage) => {
   inputElement.classList.add("form__input_type_error");
   errorElement.textContent = errorMessage;
   errorElement.classList.add("form__input-error_active");
-  const buttonElement = formElement.querySelector(".form__submit");
-  buttonElement.style.marginTop = "31.34px";
+
 };
 
 const hideInputError = (formElement, inputElement) => {
