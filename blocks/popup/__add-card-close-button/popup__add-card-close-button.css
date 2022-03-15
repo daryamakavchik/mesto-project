@@ -1,16 +1,16 @@
 .popup__add-card-close-button {
-  background-image: url(../../../images/close.svg);
-  background-color: transparent;
-  background-position: 50%;
-  background-repeat: no-repeat;
-  border: none;
-  width: 32px;
-  height: 32px;
-  padding: 0;
   display: flex;
   position: absolute;
   right: -40px;
   top: -40px;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: none;
+  background-image: url(../../../images/close.svg);
+  background-color: transparent;
+  background-position: 50%;
+  background-repeat: no-repeat;
 }
 
 .popup__add-card-close-button:hover {

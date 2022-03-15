@@ -1,12 +1,12 @@
 .form__input {
+  min-width: 358px;
+  margin-left: 36px;
   padding-bottom: 13px;
   font-size: 14px;
   line-height: 1.21;
   font-weight: 400;
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-  min-width: 358px;
-  margin-left: 36px;
 }
 
 .form__input:last-child {
@@ -15,7 +15,7 @@
 
 @media screen and (min-width: 320px) and (max-width: 650px) {
   .form__input {
-    margin-left: 22px;
     min-width: calc(100% - 44px);
+    margin-left: 22px;
   }
 }

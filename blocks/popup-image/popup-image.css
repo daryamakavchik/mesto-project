@@ -1,9 +1,5 @@
 .popup-image {
-  display: flex;
-  opacity: 0;
-  transition: visibility 0s 0.5s, opacity 0.5s linear;
-  visibility: hidden;
+  padding: 90px 0 90px 0;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.9);
-  padding: 90px 0 90px 0;
 }
