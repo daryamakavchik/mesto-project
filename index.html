@@ -53,7 +53,7 @@
     </footer>
     <div class="popup popup__profile">
       <div class="popup__container">
-        <form class="form" name="form">
+        <form class="form" name="form" id="editform">
           <h2 class="form__title">Редактировать профиль</h2>
           <div class="form__input-lines">
             <input
@@ -62,18 +62,20 @@
               id="username"
               class="form__input"
               minlength="2"
-              maxlength="30"
+              maxlength="40"
               required
             />
+            <span class="form__input-error username-error"></span>
             <input
               type="text"
               name="usernameinfo"
               id="usernameinfo"
               class="form__input"
               minlength="2"
-              maxlength="100"
+              maxlength="200"
               required
             />
+            <span class="form__input-error usernameinfo-error"></span>
           </div>
           <button type="submit" class="form__button">Сохранить</button>
         </form>

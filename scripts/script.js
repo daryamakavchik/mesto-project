@@ -1,7 +1,7 @@
 /*             CONSTANTS           */
 const elements = document.querySelector('.elements'); 
 const cardImage = document.querySelector('.elements__image');
-const formInput = document.querySelector('.form');
+const form = document.querySelector('.form');
 const profileTitle= document.querySelector('.profile__title');
 const profileSubtitle= document.querySelector('.profile__subtitle');
 const cardTemplate = document.querySelector('#cardtemplate').content;
@@ -156,7 +156,7 @@ function savePopupEdit (evt) {
   profileSubtitle.textContent = userNameInfo.value;
   closeProfilePopup();
 }
-formInput.addEventListener('submit', savePopupEdit);
+form.addEventListener('submit', savePopupEdit);
 
 /*           EDIT AND SAVE ADD-CARD FORM         */      
 function addNewCard(evt){
@@ -181,3 +181,38 @@ function deleteCard(evt){
    evt.target.closest('.elements__element').remove();
 }
 
+/*          VALIDATE FORM        */
+const formEdit = document.querySelector('#editform');
+const formInput = formEdit.querySelector('.form__input');
+const formError = formEdit.querySelector(`.${formInput.id}-error`);
+
+const showInputError = (formElement, inputElement, errorMessage) => {
+  inputElement.classList.add('form__input_type_error');
+  const errorElement = document.querySelector(`.${inputElement.id}-error`);
+  if (inputElement.id = 'username') { errorElement.textContent = 'Вы пропустили это поле'; } 
+  else if (inputElement.id = 'usernameinfo') { errorElement.textContent = 'Введите адрес сайта'; } 
+  errorElement.classList.add('form__input-error_active');
+};
+
+const hideInputError = (formElement, inputElement) => {
+  inputElement.classList.remove('form__input_type_error');
+  const errorElement = document.querySelector(`.${inputElement.id}-error`);
+  errorElement.classList.remove('form__input-error_active');
+  errorElement.textContent = '';
+};
+
+const checkInputValidity = (formElement, inputElement) => {
+  if (!inputElement.validity.valid) {
+    showInputError(formEdit, formInput, formInput.validationMessage);
+  } else {
+    hideInputError(formEdit, formInput);
+  }
+};
+
+formEdit.addEventListener('submit', function (evt) {
+  evt.preventDefault();
+});
+
+formEdit.addEventListener('input', function () {
+  checkInputValidity(formEdit, formInput);
+});
