@@ -141,11 +141,12 @@ function closeAddCardPopup() {
 closeAddCardButton.addEventListener('click', closeAddCardPopup);
 
 /*         CLOSE IMAGE POPUP             */
-function closeImagePopup () {
+function closeImagePopup (evt) {
+  if ((evt.target === popUpImageCloseButton || evt.target === imagePopup) && evt.target !== popUpImage) {
   closePopup(imagePopup);
+  }
 }
-popUpImageCloseButton.addEventListener('click', closeImagePopup);
-
+imagePopup.addEventListener('click', closeImagePopup);
 
 
 /*          EDIT AND SAVE PROFILE FORM          */            
@@ -170,21 +171,13 @@ closeAddCardPopup();
 addFormInput.addEventListener('submit', addNewCard);
 
 
-
 /*          LIKE          */
 function pressLike(evt){
   evt.target.classList.toggle('elements__icon_active');
-<<<<<<< HEAD
-   });
-  });
-
-  
-=======
 }
 
 /*          DELETE          */;
-function deleteCard(event){
-      event.target.closest('.elements__element').remove();
-  }
+function deleteCard(evt){
+   evt.target.closest('.elements__element').remove();
+}
 
->>>>>>> 9ac3aac42f3826ff8268a00fde2972eb11f43226
