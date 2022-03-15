@@ -36,14 +36,14 @@
       <section class="elements">
         <template id="cardtemplate">
           <div class="elements__element">
-              <div class="elements__image-box"> 
-              <img class="elements__image" src= "" />
+            <div class="elements__image-box">
+              <img class="elements__image" src="" />
               <button class="elements__delete-button"></button>
-              </div>
-              <div class="elements__caption">
+            </div>
+            <div class="elements__caption">
               <h2 class="elements__text"></h2>
               <button type="button" class="elements__icon"></button>
-              </div>
+            </div>
           </div>
         </template>
       </section>
@@ -55,7 +55,7 @@
       <div class="popup__container">
         <form class="form" name="form" id="editform">
           <h2 class="form__title">Редактировать профиль</h2>
-          <div class="form__input-lines">
+          <fieldset class="form__set">
             <input
               type="text"
               name="username"
@@ -76,8 +76,10 @@
               required
             />
             <span class="form__input-error usernameinfo-error"></span>
-          </div>
-          <button type="submit" class="form__button">Сохранить</button>
+          </fieldset>
+          <button type="submit" class="form__submit form__button" disabled>
+            Сохранить
+          </button>
         </form>
         <button type="button" class="popup_close"></button>
       </div>
@@ -86,7 +88,7 @@
       <div class="popup__container">
         <form class="form" name="form" id="addform">
           <h2 class="form__title">Новое место</h2>
-          <div class="form__input-lines">
+          <fieldset class="form__set">
             <input
               type="text"
               name="placename"
@@ -97,8 +99,9 @@
               maxlength="30"
               required
             />
+            <span class="form__input-error placename-error"></span>
             <input
-              type="text"
+              type="url"
               name="imagelink"
               id="imagelink"
               class="form__input"
@@ -107,8 +110,14 @@
               maxlength="300"
               required
             />
-          </div>
-          <button type="submit" class="form__button" id="addcardbutton">
+            <span class="form__input-error imagelink-error"></span>
+          </fieldset>
+          <button
+            type="submit"
+            class="form__submit form__button"
+            id="addcardbutton"
+            disabled
+          >
             Создать
           </button>
         </form>
