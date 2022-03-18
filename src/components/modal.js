@@ -12,13 +12,13 @@ const addCardPopup = document.querySelector(".popup__add-card");
 const imagePopup = document.querySelector(".popup-image");
 const popUpImage = document.querySelector(".popup-image__image");
 
-function openProfilePopup() {
+function onProfilePopupClick() {
   userName.value = profileTitle.textContent;
   userNameInfo.value = profileSubtitle.textContent;
   openPopup(profilePopup);
 }
 
-function saveProfilePopup(evt) {
+function onSaveProfilePopupClick(evt) {
   evt.preventDefault();
   profileTitle.textContent = userName.value;
   profileSubtitle.textContent = userNameInfo.value;
@@ -75,8 +75,8 @@ function onImagePopupOverlayClick(evt) {
 }
 
 export {
-  openProfilePopup,
-  saveProfilePopup,
+  onProfilePopupClick,
+  onSaveProfilePopupClick,
   onAddCardButtonClick,
   onAddCardFormSubmit,
   onAddCardPopupOverlayClick,

@@ -4,13 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Место</title>
-    <link rel="stylesheet" href="./pages/index.css" />
   </head>
   <body class="page">
     <header class="header">
       <img
         class="header__logo"
-        src="images/Vector.svg.svg"
+        src="<%=require('./images/vector.svg')%>"
         alt="Логотип проекта Место"
       />
     </header>
@@ -20,17 +19,17 @@
         <div class="profile__info">
           <img
             class="profile__image"
-            src="images/image.jpg"
+            src="<%=require('./images/image.jpg')%>"
             alt="Портретный снимок Жак-Ива Кусто"
           />
           <h1 class="profile__title">Жак-Ив Кусто</h1>
           <button type="button" class="profile__edit-button">
-            <img src="images/pencil.svg" alt="Карандаш" />
+            <img src="<%=require('./images/pencil.svg')%>" alt="Карандаш" />
           </button>
           <p class="profile__subtitle">Исследователь океана</p>
         </div>
         <button type="button" class="profile__add-button">
-          <img src="images/plus.svg" alt="Знак плюс" />
+          <img src="<%=require('./images/plus.svg')%>" alt="Знак плюс" />
         </button>
       </section>
       <section class="elements">
@@ -130,6 +129,5 @@
         </figure>
       </div>
     </div>
-    <script type="module" src="./index.js"></script>
   </body>
 </html>
