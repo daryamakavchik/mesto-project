@@ -1,3 +1,5 @@
+const formList = Array.from(document.querySelectorAll(".form"));
+
 const showInputError = (formElement, inputElement, errorMessage) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
   inputElement.classList.add("form__input_type_error");
@@ -48,7 +50,6 @@ const setEventListeners = (formElement) => {
 };
 
 export const enableValidation = () => {
-  const formList = Array.from(document.querySelectorAll(".form"));
   formList.forEach((formElement) => {
     formElement.addEventListener("submit", function (evt) {
       evt.preventDefault();

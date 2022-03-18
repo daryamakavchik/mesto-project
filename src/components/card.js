@@ -1,10 +1,14 @@
 import { pressLike, deleteCard } from "./utils.js";
 import { openImagePopup, closeImagePopup } from "./modal.js";
 
-function addInitialCardData(initialCardData) {
-  const elements = document.querySelector(".elements");
-  const cards = createCards(initialCardData);
+const elements = document.querySelector(".elements");
+const cardTemplate = document.querySelector("#cardtemplate").content;
+const imagePopup = document.querySelector(".popup-image");
+const popUpImage = document.querySelector(".popup-image__image");
+const popUpImageCaption = document.querySelector(".popup-image__caption");
 
+function addInitialCardData(initialCardData) {
+  const cards = createCards(initialCardData);
   elements.prepend(...cards);
 }
 
@@ -13,7 +17,6 @@ function createCards(initialCardData) {
 }
 
 function createCard(name, link) {
-  const cardTemplate = document.querySelector("#cardtemplate").content;
   const cardElement = cardTemplate
     .querySelector(".elements__element")
     .cloneNode(true);
@@ -31,15 +34,11 @@ function createCard(name, link) {
   cardLikeButton.addEventListener("click", pressLike);
   cardDeleteButton.addEventListener("click", deleteCard);
   cardImage.addEventListener("click", function () {
-    const imagePopup = document.querySelector(".popup-image");
-    const popUpImage = document.querySelector(".popup-image__image");
     const popUpImageCloseButton = imagePopup.querySelector(".popup_close");
-    const popUpImageCaption = document.querySelector(".popup-image__caption");
     popUpImage.alt = name;
     popUpImage.src = cardImage.src;
     popUpImageCaption.textContent = name;
     openImagePopup();
-
     popUpImageCloseButton.addEventListener("click", closeImagePopup);
   });
 

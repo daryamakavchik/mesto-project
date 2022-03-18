@@ -1,3 +1,5 @@
+const openedPopup = document.querySelector(".popup_opened");
+
 export function openPopup(somePopup) {
   somePopup.classList.add("popup_opened");
 }
@@ -9,7 +11,6 @@ export function closePopup(somePopup) {
 export function closeOnEsc(evt) {
   const escKeyCode = 27;
   if (evt.keyCode === escKeyCode) {
-    const openedPopup = document.querySelector(".popup_opened");
     closePopup(openedPopup);
   }
 }
