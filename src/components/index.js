@@ -1,6 +1,6 @@
-import './pages/index.css';
-import { initialCardData } from "./components/initialcarddata.js";
-import { addInitialCardData } from "./components/card.js";
+import "../pages/index.css";
+import { initialCardData } from "./initialcarddata.js";
+import { addInitialCardData } from "./card.js";
 import {
   onProfilePopupClick,
   onSaveProfilePopupClick,
@@ -11,8 +11,8 @@ import {
   onImagePopupOverlayClick,
   onProfilePopupOverlayClick,
   onCloseProfilePopupButtonClick,
-} from "./components/modal.js";
-import { enableValidation } from "./components/validate.js";
+} from "./modal.js";
+import { enableValidation } from "./validate.js";
 
 const profileForm = document.querySelector("#profileform");
 const profilePopup = document.querySelector(".popup__profile");
@@ -29,21 +29,24 @@ const imagePopup = document.querySelector(".popup-image");
 addInitialCardData(initialCardData);
 enableValidation({
   formSelector: ".form",
-  inputElement: ".form__input",
-  inputErrorClass: ".form__input_type_error",
-  errorClass: ".form__input-error_active",
-  inactiveButtonClass: ".form__button_disabled",
-  buttonElement: ".form__submit" 
+  inputSelector: ".form__input",
+  submitButtonSelector: ".form__button-submit",
+  inputErrorClass: "form__input_type_error",
+  errorClass: "form__input-error_active",
+  inactiveButtonClass: "form__button-submit_disabled",
 });
 
 profileForm.addEventListener("submit", onSaveProfilePopupClick);
 editProfileButton.addEventListener("click", onProfilePopupClick);
 profilePopup.addEventListener("click", onProfilePopupOverlayClick);
-closeProfilePopupButton.addEventListener("click", onCloseProfilePopupButtonClick); 
+closeProfilePopupButton.addEventListener(
+  "click",
+  onCloseProfilePopupButtonClick
+);
 
 addCardForm.addEventListener("submit", onAddCardFormSubmit);
 addCardButton.addEventListener("click", onAddCardButtonClick);
-addCardPopup.addEventListener('click', onAddCardPopupOverlayClick);
+addCardPopup.addEventListener("click", onAddCardPopupOverlayClick);
 closeAddCardPopupButton.addEventListener("click", onCloseAddCardButtonClick);
 
 imagePopup.addEventListener("click", onImagePopupOverlayClick);

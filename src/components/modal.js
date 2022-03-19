@@ -1,4 +1,4 @@
-import { openPopup, closePopup, closeOnEsc } from "./utils.js";
+import { openPopup, closePopup } from "./utils.js";
 import { createCard } from "./card.js";
 
 const elements = document.querySelector(".elements");
@@ -7,7 +7,7 @@ const profileSubtitle = document.querySelector(".profile__subtitle");
 const userName = document.querySelector("#username");
 const userNameInfo = document.querySelector("#usernameinfo");
 const profilePopup = document.querySelector(".popup__profile");
-const popupContainer = document.querySelector('.popup__container');
+const popupContainer = document.querySelector(".popup__container");
 const addCardPopup = document.querySelector(".popup__add-card");
 const imagePopup = document.querySelector(".popup-image");
 const popUpImage = document.querySelector(".popup-image__image");
@@ -31,7 +31,7 @@ function onProfilePopupOverlayClick(evt) {
   }
 }
 
-function onCloseProfilePopupButtonClick(evt) {
+function onCloseProfilePopupButtonClick() {
   closePopup(profilePopup);
 }
 
@@ -55,13 +55,12 @@ function onAddCardPopupOverlayClick(evt) {
   }
 }
 
-function onCloseAddCardButtonClick(evt){
+function onCloseAddCardButtonClick(evt) {
   closePopup(addCardPopup);
 }
 
 function openImagePopup() {
   openPopup(imagePopup);
-  document.addEventListener("keydown", closeOnEsc);
 }
 
 function closeImagePopup() {

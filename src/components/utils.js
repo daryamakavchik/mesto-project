@@ -1,18 +1,17 @@
-const openedPopup = document.querySelector(".popup_opened");
+const escKey = "Escape";
 
 export function openPopup(somePopup) {
   somePopup.classList.add("popup_opened");
+  document.addEventListener("keydown", function closeOnEsc(evt) {
+    const openedPopup = document.querySelector(".popup_opened");
+    if (evt.key === escKey) {
+      closePopup(openedPopup);
+    }
+  });
 }
 
 export function closePopup(somePopup) {
   somePopup.classList.remove("popup_opened");
-}
-
-export function closeOnEsc(evt) {
-  const escKeyCode = 27;
-  if (evt.keyCode === escKeyCode) {
-    closePopup(openedPopup);
-  }
 }
 
 export function pressLike(evt) {
