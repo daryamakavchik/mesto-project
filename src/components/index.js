@@ -2,27 +2,24 @@ import "../pages/index.css";
 import { initialCardData } from "./initialcarddata.js";
 import { addInitialCardData } from "./card.js";
 import {
-  onProfilePopupClick,
-  onSaveProfilePopupClick,
-  onAddCardButtonClick,
-  onAddCardPopupOverlayClick,
-  onCloseAddCardButtonClick,
-  onAddCardFormSubmit,
-  onImagePopupOverlayClick,
-  onProfilePopupOverlayClick,
-  onCloseProfilePopupButtonClick,
+  openProfilePopup,
+  handleProfileFormSubmit,
+  openAddCardPopup,
+  handleAddCardFormSubmit,
+  openImagePopup
 } from "./modal.js";
 import { enableValidation } from "./validate.js";
+import { closePopup } from "./utils";
 
+
+const popups = document.querySelectorAll('.popup');
 const profileForm = document.querySelector("#profileform");
 const profilePopup = document.querySelector(".popup__profile");
 const editProfileButton = document.querySelector(".profile__edit-button");
-const closeProfilePopupButton = profilePopup.querySelector(".popup_close");
 
 const addCardForm = document.querySelector("#addcardform");
 const addCardPopup = document.querySelector(".popup__add-card");
 const addCardButton = document.querySelector(".profile__add-button");
-const closeAddCardPopupButton = addCardPopup.querySelector(".popup_close");
 
 const imagePopup = document.querySelector(".popup-image");
 
@@ -36,17 +33,19 @@ enableValidation({
   inactiveButtonClass: "form__button-submit_disabled",
 });
 
-profileForm.addEventListener("submit", onSaveProfilePopupClick);
-editProfileButton.addEventListener("click", onProfilePopupClick);
-profilePopup.addEventListener("click", onProfilePopupOverlayClick);
-closeProfilePopupButton.addEventListener(
-  "click",
-  onCloseProfilePopupButtonClick
-);
+popups.forEach((popup) => {
+  popup.addEventListener('mousedown', (evt) => {
+      if (evt.target.classList.contains('popup_opened')) {
+          closePopup(popup)
+      }
+      if (evt.target.classList.contains('popup__close')) {
+        closePopup(popup)
+      }
+  })
+})
 
-addCardForm.addEventListener("submit", onAddCardFormSubmit);
-addCardButton.addEventListener("click", onAddCardButtonClick);
-addCardPopup.addEventListener("click", onAddCardPopupOverlayClick);
-closeAddCardPopupButton.addEventListener("click", onCloseAddCardButtonClick);
+profileForm.addEventListener("submit", handleProfileFormSubmit);
+editProfileButton.addEventListener("click", openProfilePopup);
 
-imagePopup.addEventListener("click", onImagePopupOverlayClick);
+addCardForm.addEventListener("submit", handleAddCardFormSubmit);
+addCardButton.addEventListener("click", openAddCardPopup);

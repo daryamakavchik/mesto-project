@@ -1,5 +1,4 @@
-import { pressLike, deleteCard } from "./utils.js";
-import { openImagePopup, closeImagePopup } from "./modal.js";
+import { openImagePopup } from "./modal.js";
 
 const elements = document.querySelector(".elements");
 const cardTemplate = document.querySelector("#cardtemplate").content;
@@ -34,15 +33,21 @@ function createCard(name, link) {
   cardLikeButton.addEventListener("click", pressLike);
   cardDeleteButton.addEventListener("click", deleteCard);
   cardImage.addEventListener("click", function () {
-    const popUpImageCloseButton = imagePopup.querySelector(".popup_close");
     popUpImage.alt = name;
     popUpImage.src = cardImage.src;
     popUpImageCaption.textContent = name;
     openImagePopup();
-    popUpImageCloseButton.addEventListener("click", closeImagePopup);
   });
 
   return cardElement;
+}
+
+function pressLike(evt) {
+  evt.target.classList.toggle("elements__icon_active");
+}
+
+function deleteCard(evt) {
+  evt.target.closest(".elements__element").remove();
 }
 
 export { addInitialCardData, createCard };
