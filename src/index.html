@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Место</title>
+  </head>
+  <body class="page">
+    <header class="header">
+      <img
+        class="header__logo"
+        src="<%=require('./images/vector.svg')%>"
+        alt="Логотип проекта Место"
+      />
+    </header>
+    <hr class="header__line" />
+    <main>
+      <section class="profile">
+        <div class="profile__info">
+          <img
+            class="profile__image"
+            src="<%=require('./images/image.jpg')%>"
+            alt="Портретный снимок Жак-Ива Кусто"
+          />
+          <h1 class="profile__title">Жак-Ив Кусто</h1>
+          <button type="button" class="profile__edit-button">
+            <img src="<%=require('./images/pencil.svg')%>" alt="Карандаш" />
+          </button>
+          <p class="profile__subtitle">Исследователь океана</p>
+        </div>
+        <button type="button" class="profile__add-button">
+          <img src="<%=require('./images/plus.svg')%>" alt="Знак плюс" />
+        </button>
+      </section>
+      <section class="elements">
+        <template id="cardtemplate">
+          <div class="elements__element">
+            <div class="elements__image-box">
+              <img class="elements__image" src="" />
+              <button class="elements__delete-button"></button>
+            </div>
+            <div class="elements__caption">
+              <h2 class="elements__text"></h2>
+              <button type="button" class="elements__icon"></button>
+            </div>
+          </div>
+        </template>
+      </section>
+    </main>
+    <footer class="footer">
+      <p class="footer__copyright">© 2020 Mesto Russia</p>
+    </footer>
+    <div class="popup popup__profile">
+      <div class="popup__container">
+        <form class="form" name="form" id="profileform">
+          <h2 class="form__title">Редактировать профиль</h2>
+          <fieldset class="form__set">
+            <input
+              type="text"
+              name="username"
+              id="username"
+              class="form__input"
+              minlength="2"
+              maxlength="40"
+              required
+            />
+            <span class="form__input-error username-error"></span>
+            <input
+              type="text"
+              name="usernameinfo"
+              id="usernameinfo"
+              class="form__input"
+              minlength="2"
+              maxlength="200"
+              required
+            />
+            <span class="form__input-error usernameinfo-error"></span>
+          </fieldset>
+          <button type="submit" class="form__button-submit">
+            Сохранить
+          </button>
+        </form>
+        <button type="button" class="popup_close"></button>
+      </div>
+    </div>
+    <div class="popup popup__add-card">
+      <div class="popup__container">
+        <form class="form" name="form" id="addcardform">
+          <h2 class="form__title">Новое место</h2>
+          <fieldset class="form__set">
+            <input
+              type="text"
+              name="placename"
+              id="placename"
+              class="form__input"
+              placeholder="Название"
+              minlength="2"
+              maxlength="30"
+              required
+            />
+            <span class="form__input-error placename-error"></span>
+            <input
+              type="url"
+              name="imagelink"
+              id="imagelink"
+              class="form__input"
+              placeholder="Ссылка на картинку"
+              required
+            />
+            <span class="form__input-error imagelink-error"></span>
+          </fieldset>
+          <button
+            type="submit"
+            class="form__button-submit"
+            id="addcardbutton"
+          >
+            Создать
+          </button>
+        </form>
+        <button type="button" class="popup_close"></button>
+      </div>
+    </div>
+    <div class="popup popup-image">
+      <div class="popup-image__content">
+        <button type="button" class="popup_close"></button>
+        <figure class="popup-image__figure">
+          <img class="popup-image__image" />
+          <figcaption class="popup-image__caption"></figcaption>
+        </figure>
+      </div>
+    </div>
+  </body>
+</html>
