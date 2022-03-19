@@ -14,8 +14,6 @@ import {
 } from "./components/modal.js";
 import { enableValidation } from "./components/validate.js";
 
-const form = document.querySelector(".form");
-
 const profileForm = document.querySelector("#profileform");
 const profilePopup = document.querySelector(".popup__profile");
 const editProfileButton = document.querySelector(".profile__edit-button");
@@ -29,7 +27,14 @@ const closeAddCardPopupButton = addCardPopup.querySelector(".popup_close");
 const imagePopup = document.querySelector(".popup-image");
 
 addInitialCardData(initialCardData);
-enableValidation(form);
+enableValidation({
+  formSelector: ".form",
+  inputElement: ".form__input",
+  inputErrorClass: ".form__input_type_error",
+  errorClass: ".form__input-error_active",
+  inactiveButtonClass: ".form__button_disabled",
+  buttonElement: ".form__submit" 
+});
 
 profileForm.addEventListener("submit", onSaveProfilePopupClick);
 editProfileButton.addEventListener("click", onProfilePopupClick);
