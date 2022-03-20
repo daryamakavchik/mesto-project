@@ -6,7 +6,6 @@ import {
   handleProfileFormSubmit,
   openAddCardPopup,
   handleAddCardFormSubmit,
-  openImagePopup
 } from "./modal.js";
 import { enableValidation } from "./validate.js";
 import { closePopup } from "./utils";

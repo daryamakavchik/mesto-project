@@ -2,8 +2,8 @@ import { openImagePopup } from "./modal.js";
 
 const elements = document.querySelector(".elements");
 const cardTemplate = document.querySelector("#cardtemplate").content;
-const popUpImage = document.querySelector(".popup-image__image");
-const popUpImageCaption = document.querySelector(".popup-image__caption");
+const popupImage = document.querySelector(".popup-image__image");
+const popupImageCaption = document.querySelector(".popup-image__caption");
 
 function addInitialCardData(initialCardData) {
   const cards = createCards(initialCardData);
@@ -32,9 +32,9 @@ function createCard(name, link) {
   cardLikeButton.addEventListener("click", pressLike);
   cardDeleteButton.addEventListener("click", deleteCard);
   cardImage.addEventListener("click", function () {
-    popUpImage.alt = name;
-    popUpImage.src = cardImage.src;
-    popUpImageCaption.textContent = name;
+    popupImage.alt = name;
+    popupImage.src = cardImage.src;
+    popupImageCaption.textContent = name;
     openImagePopup();
   });
 
