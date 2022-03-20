@@ -1,5 +1,5 @@
 import "../pages/index.css";
-import { initialCardData } from "./initialcarddata.js";
+import { initialCardData } from "./initialCardData.js";
 import { addInitialCardData } from "./card.js";
 import {
   openProfilePopup,
@@ -14,14 +14,10 @@ import { closePopup } from "./utils";
 
 const popups = document.querySelectorAll('.popup');
 const profileForm = document.querySelector("#profileform");
-const profilePopup = document.querySelector(".popup__profile");
 const editProfileButton = document.querySelector(".profile__edit-button");
 
 const addCardForm = document.querySelector("#addcardform");
-const addCardPopup = document.querySelector(".popup__add-card");
 const addCardButton = document.querySelector(".profile__add-button");
-
-const imagePopup = document.querySelector(".popup-image");
 
 addInitialCardData(initialCardData);
 enableValidation({

@@ -2,7 +2,6 @@ import { openImagePopup } from "./modal.js";
 
 const elements = document.querySelector(".elements");
 const cardTemplate = document.querySelector("#cardtemplate").content;
-const imagePopup = document.querySelector(".popup-image");
 const popUpImage = document.querySelector(".popup-image__image");
 const popUpImageCaption = document.querySelector(".popup-image__caption");
 
