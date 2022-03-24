@@ -1,8 +1,12 @@
-import { openImagePopup } from "./modal.js";
+import { fetchDeleteCard, fetchHandleLikes } from "./api.js";
+import { openDeleteCardPopup, openImagePopup } from "./modal.js";
+import { closePopup } from "./utils.js";
 
 const cardTemplate = document.querySelector("#cardtemplate").content;
 const popupImage = document.querySelector(".popup-image__image");
 const popupImageCaption = document.querySelector(".popup-image__caption");
+const deleteCardPopup = document.querySelector(".popup-delete");
+const cardConfirmDeleteForm = document.querySelector("#deletecardform");
 
 function createCard(name, link, id, ownerid, likes, myId) {
   const cardElement = cardTemplate
@@ -21,7 +25,7 @@ function createCard(name, link, id, ownerid, likes, myId) {
   cardText.textContent = name;
   cardLikes.textContent = `${likes.length}`;
 
-  if (likes.some(like => like._id === myId)) {
+  if (likes.some((like) => like._id === myId)) {
     cardLikeButton.classList.add("elements__icon_active");
   }
 
@@ -31,6 +35,18 @@ function createCard(name, link, id, ownerid, likes, myId) {
     cardDeleteButton.style.display = "none";
   }
 
+  cardDeleteButton.addEventListener("click", function setDeleteClass (evt) {
+    evt.target.closest(".elements__element").setAttribute('id', 'cardtodelete');
+    openDeleteCardPopup();
+  });
+
+  cardConfirmDeleteForm.addEventListener("submit", function deleteCard (evt) {
+    evt.preventDefault();
+    fetchDeleteCard(id);    //////// неправильно
+    document.querySelector("#cardtodelete").remove();    ////не работает?
+    closePopup(deleteCardPopup);
+    });
+
   cardImage.addEventListener("click", function () {
     popupImage.alt = name;
     popupImage.src = cardImage.src;
@@ -38,44 +54,27 @@ function createCard(name, link, id, ownerid, likes, myId) {
     openImagePopup();
   });
 
-  cardDeleteButton.addEventListener("click", function deleteCard(evt) {
-    fetch(`https://nomoreparties.co/v1/plus-cohort-8/cards/${id}`, {
-      method: "DELETE",
-      headers: {
-        authorization: "5f538871-a93e-462d-87c2-0ed817fe3122",
-      },
-    });
-    evt.target.closest(".elements__element").remove();
-  });
-
   cardLikeButton.addEventListener("click", function handleLikes(evt) {
-    const myLike = likes.find(like => like._id === myId);
+    const myLike = likes.find((like) => like._id === myId);
     const method = myLike !== undefined ? "DELETE" : "PUT";
+    fetchHandleLikes(method)
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        likes = data.likes;
 
-    fetch(`https://nomoreparties.co/v1/plus-cohort-8/cards/likes/${id}`, {
-      method: method,
-      headers: {
-        authorization: "5f538871-a93e-462d-87c2-0ed817fe3122",
-      },
-    }).then((res) => {
-      return res.json();
-    }).then((data) => {
-      likes = data.likes;
-      
-      cardLikes.textContent = `${likes.length}`;
+        cardLikes.textContent = `${likes.length}`;
 
-      if (likes.some(like => like._id === myId)) {
-        cardLikeButton.classList.add("elements__icon_active");
-      } else {
-        cardLikeButton.classList.remove("elements__icon_active");
-      }
-    });
-
-
+        if (likes.some((like) => like._id === myId)) {
+          cardLikeButton.classList.add("elements__icon_active");
+        } else {
+          cardLikeButton.classList.remove("elements__icon_active");
+        }
+      });
   });
 
   return cardElement;
 }
 
-
-export { createCard }
+export { createCard };

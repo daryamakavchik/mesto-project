@@ -1,5 +1,5 @@
 import "../pages/index.css";
-import { getUserInfo } from "./api.js";
+import { getUserInfo } from "./app.js";
 import {
   openProfilePopup,
   handleProfileFormSubmit,

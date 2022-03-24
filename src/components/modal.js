@@ -1,5 +1,5 @@
 import { openPopup, closePopup } from "./utils.js";
-import { saveNewProfilePic, addNewCard, setUserInfo } from "./api.js";
+import { saveNewProfilePic, addNewCard, setUserInfo } from "./app.js";
 
 const profileTitle = document.querySelector(".profile__title");
 const profileSubtitle = document.querySelector(".profile__subtitle");
