@@ -1,6 +1,7 @@
 import { createCard } from "./card";
 import { renderLoading } from "./modal";
 
+// tut pusechka
 const elements = document.querySelector(".elements");
 const profileImage = document.querySelector(".profile__image");
 const profileTitle = document.querySelector(".profile__title");
@@ -8,6 +9,7 @@ const profileSubtitle = document.querySelector(".profile__subtitle");
 const username = document.querySelector("#username");
 const usernameInfo = document.querySelector("#usernameinfo");
 
+//i tut pusechka
 export const getUserInfo = () => {
   fetch("https://nomoreparties.co/v1/plus-cohort-8/users/me", {
     method: "GET",

@@ -49,25 +49,29 @@ function createCard(name, link, id, ownerid, likes, myId) {
   });
 
   cardLikeButton.addEventListener("click", function handleLikes(evt) {
-    if (likes.some(like => like._id === myId)) {
-      fetch(`https://nomoreparties.co/v1/plus-cohort-8/cards/likes/${id}`, {
-        method: "DELETE",
-        headers: {
-          authorization: "5f538871-a93e-462d-87c2-0ed817fe3122",
-        },
-      });
-      evt.target.classList.remove("elements__icon_active");
-      cardLikes.textContent = `${likes.length - 1}`;
-    } else {
-      fetch(`https://nomoreparties.co/v1/plus-cohort-8/cards/likes/${id}`, {
-        method: "PUT",
-        headers: {
-          authorization: "5f538871-a93e-462d-87c2-0ed817fe3122",
-        },
-      });
-      evt.target.classList.add("elements__icon_active"); 
-      cardLikes.textContent = `${likes.length + 1}`;
-    }
+    const myLike = likes.find(like => like._id === myId);
+    const method = myLike !== undefined ? "DELETE" : "PUT";
+
+    fetch(`https://nomoreparties.co/v1/plus-cohort-8/cards/likes/${id}`, {
+      method: method,
+      headers: {
+        authorization: "5f538871-a93e-462d-87c2-0ed817fe3122",
+      },
+    }).then((res) => {
+      return res.json();
+    }).then((data) => {
+      likes = data.likes;
+      
+      cardLikes.textContent = `${likes.length}`;
+
+      if (likes.some(like => like._id === myId)) {
+        cardLikeButton.classList.add("elements__icon_active");
+      } else {
+        cardLikeButton.classList.remove("elements__icon_active");
+      }
+    });
+
+
   });
 
   return cardElement;
