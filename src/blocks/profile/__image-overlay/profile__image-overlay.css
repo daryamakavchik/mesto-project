@@ -1,0 +1,15 @@
+.profile__image-overlay{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 120px;
+  height: 120px;
+  margin: 0 48.75px 0 0;
+  grid-area: a;
+} 
+
+@media screen and (min-width: 1024px) {
+  .profile__image-overlay {
+    flex-direction: row;
+  }
+}

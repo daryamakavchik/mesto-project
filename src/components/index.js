@@ -1,24 +1,27 @@
 import "../pages/index.css";
-import { initialCardData } from "./initialCardData.js";
-import { addInitialCardData } from "./card.js";
+import { getUserInfo } from "./api.js";
 import {
   openProfilePopup,
   handleProfileFormSubmit,
   openAddCardPopup,
+  openEditProfilePic,
   handleAddCardFormSubmit,
+  handleEditProfilePic,
 } from "./modal.js";
 import { enableValidation } from "./validate.js";
 import { closePopup } from "./utils";
 
-
-const popups = document.querySelectorAll('.popup');
+const popups = document.querySelectorAll(".popup");
 const profileForm = document.querySelector("#profileform");
 const editProfileButton = document.querySelector(".profile__edit-button");
 
 const addCardForm = document.querySelector("#addcardform");
 const addCardButton = document.querySelector(".profile__add-button");
 
-addInitialCardData(initialCardData);
+const editProfilePicForm = document.querySelector("#profilepicform");
+const profilePicEditButton = document.querySelector(".profile__image-overlay");
+
+getUserInfo();
 enableValidation({
   formSelector: ".form",
   inputSelector: ".form__input",
@@ -29,18 +32,21 @@ enableValidation({
 });
 
 popups.forEach((popup) => {
-  popup.addEventListener('mousedown', (evt) => {
-      if (evt.target.classList.contains('popup_opened')) {
-          closePopup(popup)
-      }
-      if (evt.target.classList.contains('popup__close')) {
-        closePopup(popup)
-      }
-  })
-})
+  popup.addEventListener("mousedown", (evt) => {
+    if (evt.target.classList.contains("popup_opened")) {
+      closePopup(popup);
+    }
+    if (evt.target.classList.contains("popup__close")) {
+      closePopup(popup);
+    }
+  });
+});
 
 profileForm.addEventListener("submit", handleProfileFormSubmit);
 editProfileButton.addEventListener("click", openProfilePopup);
 
 addCardForm.addEventListener("submit", handleAddCardFormSubmit);
 addCardButton.addEventListener("click", openAddCardPopup);
+
+editProfilePicForm.addEventListener("submit", handleEditProfilePic);
+profilePicEditButton.addEventListener("click", openEditProfilePic);
