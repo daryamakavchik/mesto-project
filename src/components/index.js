@@ -19,7 +19,7 @@ const addCardForm = document.querySelector("#addcardform");
 const addCardButton = document.querySelector(".profile__add-button");
 
 const editProfilePicForm = document.querySelector("#profilepicform");
-const profilePicEditButton = document.querySelector(".profile__image-overlay");
+const editProfilePicButton = document.querySelector("#editprofilepicbutton");
 
 getUserInfo();
 enableValidation({
@@ -49,4 +49,4 @@ addCardForm.addEventListener("submit", handleAddCardFormSubmit);
 addCardButton.addEventListener("click", openAddCardPopup);
 
 editProfilePicForm.addEventListener("submit", handleEditProfilePic);
-profilePicEditButton.addEventListener("click", openEditProfilePic);
+editProfilePicButton.addEventListener("click", openEditProfilePic);
