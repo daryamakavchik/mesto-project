@@ -21,6 +21,10 @@ function createCard(name, link, id, ownerid, likes, myId) {
   cardText.textContent = name;
   cardLikes.textContent = `${likes.length}`;
 
+  if (likes.some(like => like._id === myId)) {
+    cardLikeButton.classList.add("elements__icon_active");
+  }
+
   if (ownerid === myId) {
     cardDeleteButton.style.display = "block";
   } else {
