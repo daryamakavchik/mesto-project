@@ -1,11 +1,9 @@
-import { fetchDeleteCard, fetchHandleLikes } from "./api.js";
+import { fetchHandleLikes } from "./api.js";
 import { openImagePopup } from "./modal.js";
-import { closePopup } from "./utils.js";
 
 const cardTemplate = document.querySelector("#cardtemplate").content;
 const popupImage = document.querySelector(".popup-image__image");
 const popupImageCaption = document.querySelector(".popup-image__caption");
-const cardConfirmDeleteButton = document.querySelector("#deletecardbutton");
 
 function createCard(name, link, id, ownerid, likes, myId) {
   const cardElement = cardTemplate
