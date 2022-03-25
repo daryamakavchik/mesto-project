@@ -14,7 +14,6 @@ const imagePopup = document.querySelector(".popup-image");
 const cardSubmitButton = document.querySelector("#addcardbutton");
 const addCardForm = document.querySelector("#addcardform");
 const profilePicPopup = document.querySelector(".popup-profilepic");
-const deleteCardPopup = document.querySelector(".popup-delete");
 
 function openProfilePopup() {
   username.value = profileTitle.textContent;
@@ -56,15 +55,6 @@ function openImagePopup() {
   openPopup(imagePopup);
 }
 
-function openDeleteCardPopup() {
-  openPopup(deleteCardPopup);
-  cardConfirmDeleteForm.addEventListener("submit", function deleteCard(evt) {
-    evt.preventDefault();
-    document.getElementById("cardtodelete").remove();
-    closePopup(deleteCardPopup);
-  });
-}
-
 function openEditProfilePic() {
   openPopup(profilePicPopup);
 }
@@ -84,7 +74,6 @@ export {
   openAddCardPopup,
   handleAddCardFormSubmit,
   openImagePopup,
-  openDeleteCardPopup,
   openEditProfilePic,
   handleEditProfilePic,
   renderLoading,

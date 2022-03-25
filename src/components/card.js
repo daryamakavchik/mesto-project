@@ -1,4 +1,4 @@
-import { fetchHandleLikes } from "./api.js";
+import { fetchDeleteCard, fetchHandleLikes } from "./api.js";
 import { openImagePopup } from "./modal.js";
 
 const cardTemplate = document.querySelector("#cardtemplate").content;
@@ -28,6 +28,10 @@ function createCard(name, link, id, ownerid, likes, myId) {
 
   if (ownerid === myId) {
     cardDeleteButton.style.display = "block";
+    cardDeleteButton.addEventListener("click", function deleteCard(evt) { 
+      evt.target.closest(".elements__element").remove(); 
+      fetchDeleteCard(id);
+    } ); 
   } else {
     cardDeleteButton.style.display = "none";
   }

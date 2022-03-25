@@ -1,4 +1,3 @@
-import { renderLoading } from "./modal";
 const token = "5f538871-a93e-462d-87c2-0ed817fe3122";
 
 const renderError = function (res) {
@@ -6,10 +5,6 @@ const renderError = function (res) {
     return res.json();
   }
   return Promise.reject(`Ошибка: ${res.status}`);
-};
-
-const catchError = function (err) {
-  console.log(err);
 };
 
 export const fetchGetUserInfo = () => {
@@ -20,8 +15,6 @@ export const fetchGetUserInfo = () => {
     },
   })
     .then(renderError)
-    .catch(catchError)
-    .finally(() => renderLoading(false));
 };
 
 export const fetchSetUserInfo = (userName, userInfo) => {
@@ -35,7 +28,8 @@ export const fetchSetUserInfo = (userName, userInfo) => {
       name: userName,
       about: userInfo,
     }),
-  }).then(renderError);
+  })
+  .then(renderError);
 };
 
 export const fetchInitialCards = (myId) => {
@@ -46,7 +40,6 @@ export const fetchInitialCards = (myId) => {
     },
   })
     .then(renderError)
-    .catch(catchError);
 };
 
 export const fetchSetAvatar = (link) => {
@@ -61,11 +54,9 @@ export const fetchSetAvatar = (link) => {
     }),
   })
     .then(renderError)
-    .catch(catchError)
-    .finally(() => renderLoading(false));
 };
 
-export const fetchAddNewCard = (placename, imagelink, myId) => {
+export const fetchAddNewCard = (placename, imagelink) => {
   return fetch("https://nomoreparties.co/v1/plus-cohort-8/cards", {
     method: "POST",
     headers: {
@@ -78,7 +69,6 @@ export const fetchAddNewCard = (placename, imagelink, myId) => {
     }),
   })
     .then(renderError)
-    .catch(catchError);
 };
 
 export const fetchDeleteCard = (id) => {
@@ -96,15 +86,6 @@ export const fetchHandleLikes = (id, method) => {
     headers: {
       authorization: token,
     },
-  }).then(renderError);
+  })
+  .then(renderError);
 };
-
-// export const fetchGetCardInfo = () => {
-//   return fetch('https://nomoreparties.co/v1/plus-cohort-8/cards/', {
-//     method: "GET",
-//     headers: {
-//       authorization: token,
-//     },
-//   })
-//   .then((data) => { console.log(data) });
-// };
