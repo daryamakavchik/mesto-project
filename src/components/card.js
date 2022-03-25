@@ -1,12 +1,11 @@
 import { fetchDeleteCard, fetchHandleLikes } from "./api.js";
-import { openDeleteCardPopup, openImagePopup } from "./modal.js";
+import { openImagePopup } from "./modal.js";
 import { closePopup } from "./utils.js";
 
 const cardTemplate = document.querySelector("#cardtemplate").content;
 const popupImage = document.querySelector(".popup-image__image");
 const popupImageCaption = document.querySelector(".popup-image__caption");
 const cardConfirmDeleteButton = document.querySelector("#deletecardbutton");
-
 
 function createCard(name, link, id, ownerid, likes, myId) {
   const cardElement = cardTemplate
@@ -34,10 +33,6 @@ function createCard(name, link, id, ownerid, likes, myId) {
   } else {
     cardDeleteButton.style.display = "none";
   }
-
-  cardConfirmDeleteButton.addEventListener("click", function deleteCard (id) {
-    fetchDeleteCard(id); 
-  });
 
   cardImage.addEventListener("click", function () {
     popupImage.alt = name;

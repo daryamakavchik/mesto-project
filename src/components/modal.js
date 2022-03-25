@@ -14,7 +14,7 @@ const imagePopup = document.querySelector(".popup-image");
 const cardSubmitButton = document.querySelector("#addcardbutton");
 const addCardForm = document.querySelector("#addcardform");
 const profilePicPopup = document.querySelector(".popup-profilepic");
-const cardConfirmDeleteForm = document.querySelector("#deletecardform");
+// const cardConfirmDeleteForm = document.querySelector("#deletecardform");
 const deleteCardPopup = document.querySelector(".popup-delete");
 
 function openProfilePopup() {
@@ -60,10 +60,10 @@ function openImagePopup() {
 function openDeleteCardPopup() {
   openPopup(deleteCardPopup);
   cardConfirmDeleteForm.addEventListener("submit", function deleteCard (evt) {
-    evt.preventDefault();
-    document.getElementById("cardtodelete").remove(); 
-    closePopup(deleteCardPopup);
-    });
+  evt.preventDefault();
+  document.getElementById("cardtodelete").remove(); 
+  closePopup(deleteCardPopup);
+  });  
 }
 
 function openEditProfilePic() {

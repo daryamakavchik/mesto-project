@@ -18,8 +18,6 @@ const profileSubtitle = document.querySelector(".profile__subtitle");
 const username = document.querySelector("#username");
 const usernameInfo = document.querySelector("#usernameinfo");
 
-
-
 export const getUserInfo = () => {
   fetchGetUserInfo()
     .then((res) => {
@@ -69,8 +67,16 @@ export const getInitialCards = (myId) => {
       );
     })
     .then((finishedcards) => {
-      elements.prepend(...finishedcards)
+      elements.prepend(...finishedcards);
     })
+    .then(() => {
+        const cardDeleteButtons = document.querySelectorAll('.elements__delete-button');
+        cardDeleteButtons.forEach(btn => btn.style.display !== 'none' ? btn.addEventListener("click", setDeleteClass) : null)
+        function setDeleteClass (evt) { 
+        evt.target.closest(".elements__element").setAttribute('id', 'cardtodelete');
+        openDeleteCardPopup(); 
+        };
+      })
     .catch((err) => {
       console.log(err);
     });  
