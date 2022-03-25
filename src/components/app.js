@@ -6,7 +6,10 @@ import {
   fetchInitialCards,
   fetchSetAvatar,
   fetchSetUserInfo,
+  fetchDeleteCard
 } from "./api";
+import { openDeleteCardPopup } from "./modal";
+import { closePopup } from "./utils";
 
 const elements = document.querySelector(".elements");
 const profileImage = document.querySelector(".profile__image");
@@ -14,6 +17,8 @@ const profileTitle = document.querySelector(".profile__title");
 const profileSubtitle = document.querySelector(".profile__subtitle");
 const username = document.querySelector("#username");
 const usernameInfo = document.querySelector("#usernameinfo");
+
+
 
 export const getUserInfo = () => {
   fetchGetUserInfo()
@@ -64,12 +69,12 @@ export const getInitialCards = (myId) => {
       );
     })
     .then((finishedcards) => {
-      elements.prepend(...finishedcards);
+      elements.prepend(...finishedcards)
     })
     .catch((err) => {
       console.log(err);
-    });
-};
+    });  
+  }
 
 export const saveNewProfilePic = (link) => {
   fetchSetAvatar(link)

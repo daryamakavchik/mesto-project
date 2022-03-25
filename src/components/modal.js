@@ -10,11 +10,12 @@ const placeInput = document.querySelector("#placename");
 const pictureLink = document.querySelector("#profilepicture");
 const profilePopup = document.querySelector(".popup__profile");
 const addCardPopup = document.querySelector(".popup__add-card");
-const deleteCardPopup = document.querySelector(".popup-delete");
 const imagePopup = document.querySelector(".popup-image");
 const cardSubmitButton = document.querySelector("#addcardbutton");
 const addCardForm = document.querySelector("#addcardform");
 const profilePicPopup = document.querySelector(".popup-profilepic");
+const cardConfirmDeleteForm = document.querySelector("#deletecardform");
+const deleteCardPopup = document.querySelector(".popup-delete");
 
 function openProfilePopup() {
   username.value = profileTitle.textContent;
@@ -58,6 +59,11 @@ function openImagePopup() {
 
 function openDeleteCardPopup() {
   openPopup(deleteCardPopup);
+  cardConfirmDeleteForm.addEventListener("submit", function deleteCard (evt) {
+    evt.preventDefault();
+    document.getElementById("cardtodelete").remove(); 
+    closePopup(deleteCardPopup);
+    });
 }
 
 function openEditProfilePic() {

@@ -20,6 +20,8 @@ const addCardButton = document.querySelector(".profile__add-button");
 
 const editProfilePicForm = document.querySelector("#profilepicform");
 const editProfilePicButton = document.querySelector("#editprofilepicbutton");
+const cardDeleteButtons = document.querySelectorAll(".elements__delete-button");
+console.log(cardDeleteButtons);
 
 getUserInfo();
 enableValidation({
@@ -42,6 +44,12 @@ popups.forEach((popup) => {
   });
 });
 
+cardDeleteButtons.forEach(btn => btn.style.display !== 'none' ? btn.addEventListener("click", setDeleteClass) : null)
+function setDeleteClass (evt) { 
+  evt.target.closest(".elements__element").setAttribute('id', 'cardtodelete');
+  openDeleteCardPopup(); 
+};
+
 profileForm.addEventListener("submit", handleProfileFormSubmit);
 editProfileButton.addEventListener("click", openProfilePopup);
 
@@ -50,3 +58,5 @@ addCardButton.addEventListener("click", openAddCardPopup);
 
 editProfilePicForm.addEventListener("submit", handleEditProfilePic);
 editProfilePicButton.addEventListener("click", openEditProfilePic);
+
+

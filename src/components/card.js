@@ -5,8 +5,8 @@ import { closePopup } from "./utils.js";
 const cardTemplate = document.querySelector("#cardtemplate").content;
 const popupImage = document.querySelector(".popup-image__image");
 const popupImageCaption = document.querySelector(".popup-image__caption");
-const deleteCardPopup = document.querySelector(".popup-delete");
-const cardConfirmDeleteForm = document.querySelector("#deletecardform");
+const cardConfirmDeleteButton = document.querySelector("#deletecardbutton");
+
 
 function createCard(name, link, id, ownerid, likes, myId) {
   const cardElement = cardTemplate
@@ -35,17 +35,9 @@ function createCard(name, link, id, ownerid, likes, myId) {
     cardDeleteButton.style.display = "none";
   }
 
-  cardDeleteButton.addEventListener("click", function setDeleteClass (evt) {
-    evt.target.closest(".elements__element").setAttribute('id', 'cardtodelete');
-    openDeleteCardPopup();
+  cardConfirmDeleteButton.addEventListener("click", function deleteCard (id) {
+    fetchDeleteCard(id); 
   });
-
-  cardConfirmDeleteForm.addEventListener("submit", function deleteCard (evt) {
-    evt.preventDefault();
-    fetchDeleteCard(id);    //////// неправильно
-    document.querySelector("#cardtodelete").remove();    ////не работает?
-    closePopup(deleteCardPopup);
-    });
 
   cardImage.addEventListener("click", function () {
     popupImage.alt = name;
@@ -57,7 +49,7 @@ function createCard(name, link, id, ownerid, likes, myId) {
   cardLikeButton.addEventListener("click", function handleLikes(evt) {
     const myLike = likes.find((like) => like._id === myId);
     const method = myLike !== undefined ? "DELETE" : "PUT";
-    fetchHandleLikes(method)
+    fetchHandleLikes(id, method)
       .then((res) => {
         return res.json();
       })
