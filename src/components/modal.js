@@ -58,11 +58,11 @@ function openImagePopup() {
 
 function openDeleteCardPopup() {
   openPopup(deleteCardPopup);
-  cardConfirmDeleteForm.addEventListener("submit", function deleteCard (evt) {
-  evt.preventDefault();
-  document.getElementById("cardtodelete").remove(); 
-  closePopup(deleteCardPopup);
-  });  
+  cardConfirmDeleteForm.addEventListener("submit", function deleteCard(evt) {
+    evt.preventDefault();
+    document.getElementById("cardtodelete").remove();
+    closePopup(deleteCardPopup);
+  });
 }
 
 function openEditProfilePic() {

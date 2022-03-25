@@ -39,24 +39,21 @@ function createCard(name, link, id, ownerid, likes, myId) {
     openImagePopup();
   });
 
-  cardLikeButton.addEventListener("click", function handleLikes(evt) {
+  cardLikeButton.addEventListener("click", function handleLikes() {
     const myLike = likes.find((like) => like._id === myId);
     const method = myLike !== undefined ? "DELETE" : "PUT";
-    fetchHandleLikes(id, method)
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        likes = data.likes;
+    fetchHandleLikes(id, method).then((data) => {
+      likes = data.likes;
+      console.log(data);
+      console.log(data.likes);
+      cardLikes.textContent = `${likes.length}`;
 
-        cardLikes.textContent = `${likes.length}`;
-
-        if (likes.some((like) => like._id === myId)) {
-          cardLikeButton.classList.add("elements__icon_active");
-        } else {
-          cardLikeButton.classList.remove("elements__icon_active");
-        }
-      });
+      if (likes.some((like) => like._id === myId)) {
+        cardLikeButton.classList.add("elements__icon_active");
+      } else {
+        cardLikeButton.classList.remove("elements__icon_active");
+      }
+    });
   });
 
   return cardElement;
