@@ -1,8 +1,7 @@
 .profile__image-editbutton {
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.8) url("../../../images/editavatar.svg") center
-    no-repeat;
+  background: rgba(0, 0, 0, 0.8) url('../../../images/editavatar.svg') center no-repeat;
   position: absolute;
   top: 0;
   left: 0;
