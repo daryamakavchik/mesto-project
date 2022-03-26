@@ -1,0 +1,5 @@
+.elements__icon-box {
+  display: flex;
+  flex-direction: column;
+  height: 38px;
+}

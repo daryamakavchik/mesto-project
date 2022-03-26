@@ -17,16 +17,22 @@
     <main>
       <section class="profile">
         <div class="profile__info">
-          <img
-            class="profile__image"
-            src="<%=require('./images/image.jpg')%>"
-            alt="Портретный снимок Жак-Ива Кусто"
-          />
-          <h1 class="profile__title">Жак-Ив Кусто</h1>
+          <div class="profile__image-overlay">
+            <img
+              class="profile__image"
+              src=""
+              alt="Портретный снимок Жак-Ива Кусто"
+            />
+            <button
+              class="profile__image-editbutton"
+              id="editprofilepicbutton"
+            ></button>
+          </div>
+          <h1 class="profile__title"></h1>
           <button type="button" class="profile__edit-button">
             <img src="<%=require('./images/pencil.svg')%>" alt="Карандаш" />
           </button>
-          <p class="profile__subtitle">Исследователь океана</p>
+          <p class="profile__subtitle"></p>
         </div>
         <button type="button" class="profile__add-button">
           <img src="<%=require('./images/plus.svg')%>" alt="Знак плюс" />
@@ -41,7 +47,10 @@
             </div>
             <div class="elements__caption">
               <h2 class="elements__text"></h2>
-              <button type="button" class="elements__icon"></button>
+              <div class="elements__icon-box">
+                <button type="button" class="elements__icon"></button>
+                <p class="elements__icon-likes">0</p>
+              </div>
             </div>
           </div>
         </template>
@@ -76,9 +85,7 @@
             />
             <span class="form__input-error usernameinfo-error"></span>
           </fieldset>
-          <button type="submit" class="form__button-submit">
-            Сохранить
-          </button>
+          <button type="submit" class="form__button-submit" id="profilesubmitbutton">Сохранить</button>
         </form>
         <button type="button" class="popup__close"></button>
       </div>
@@ -109,11 +116,7 @@
             />
             <span class="form__input-error imagelink-error"></span>
           </fieldset>
-          <button
-            type="submit"
-            class="form__button-submit"
-            id="addcardbutton"
-          >
+          <button type="submit" class="form__button-submit" id="addcardbutton">
             Создать
           </button>
         </form>
@@ -127,6 +130,53 @@
           <img class="popup-image__image" />
           <figcaption class="popup-image__caption"></figcaption>
         </figure>
+      </div>
+    </div>
+    <div class="popup popup-delete">
+      <div class="popup__container">
+        <form
+          class="form"
+          name="form"
+          id="deletecardform"
+          action="#"
+          novalidate
+        >
+          <h2 class="form__title">Вы уверены?</h2>
+          <button
+            type="submit"
+            class="form__button-submit form__button-delete"
+            id="deletecardbutton"
+          >
+            Да
+          </button>
+        </form>
+        <button type="button" class="popup__close"></button>
+      </div>
+    </div>
+    <div class="popup popup-profilepic">
+      <div class="popup__container">
+        <form class="form" name="form" id="profilepicform">
+          <h2 class="form__title">Обновить аватар</h2>
+          <fieldset class="form__set">
+            <input
+              type="url"
+              name="profilepicture"
+              id="profilepicture"
+              class="form__input"
+              placeholder="Ссылка на картинку"
+              required
+            />
+            <span class="form__input-error profilepicture-error"></span>
+          </fieldset>
+          <button
+            type="submit"
+            class="form__button-submit form__button-addpic"
+            id="profilepicsubmitbutton"
+          >
+            Сохранить
+          </button>
+        </form>
+        <button type="button" class="popup__close"></button>
       </div>
     </div>
   </body>
