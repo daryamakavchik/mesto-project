@@ -5,7 +5,7 @@ const cardTemplate = document.querySelector("#cardtemplate").content;
 const popupImage = document.querySelector(".popup-image__image");
 const popupImageCaption = document.querySelector(".popup-image__caption");
 
-export function createCard({name, link, id, ownerid, likes}, myId) {
+export function createCard({name, link, _id, owner, likes}, myId) {
   const cardElement = cardTemplate
     .querySelector(".elements__element")
     .cloneNode(true);
@@ -26,10 +26,10 @@ export function createCard({name, link, id, ownerid, likes}, myId) {
     cardLikeButton.classList.add("elements__icon_active");
   }
 
-  if (ownerid === myId) {
+  if (owner._id === myId) {
     cardDeleteButton.addEventListener("click", function cardDelete() {
       openDeleteCardPopup(() => {
-        fetchDeleteCard(id)
+        fetchDeleteCard(_id)
           .then(() => {
             cardElement.remove();
           })
@@ -50,7 +50,7 @@ export function createCard({name, link, id, ownerid, likes}, myId) {
   cardLikeButton.addEventListener("click", function handleLikes() {
     const myLike = likes.find((like) => like._id === myId);
     const method = myLike !== undefined ? "DELETE" : "PUT";
-    fetchHandleLikes(id, method)
+    fetchHandleLikes(_id, method)
       .then((data) => {
         likes = data.likes;
         cardLikes.textContent = `${likes.length}`;
