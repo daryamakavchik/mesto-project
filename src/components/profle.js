@@ -17,9 +17,9 @@ const profilePicPopup = document.querySelector(".popup-profilepic");
 const profileImage = document.querySelector(".profile__image");
 
 export function openProfilePopup() {
+  profileForm.reset();
   username.value = profileTitle.textContent;
   usernameInfo.value = profileSubtitle.textContent;
-  profileForm.reset();
   openPopup(profilePopup);
 }
 
