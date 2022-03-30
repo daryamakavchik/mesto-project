@@ -2,7 +2,6 @@
 import { openPopup, closePopup } from "./utils.js";
 import { fetchSetAvatar, fetchSetUserInfo } from "./api.js";
 
-const profileForm = document.querySelector("#profileform");
 const profileTitle = document.querySelector(".profile__title");
 const profileSubtitle = document.querySelector(".profile__subtitle");
 const username = document.querySelector("#username");
@@ -13,11 +12,11 @@ const profileSubmitButton = document.querySelector("#profilesubmitbutton");
 const profilePicSubmitButton = document.querySelector(
   "#profilepicsubmitbutton"
 );
+const cardSubmitButton = document.querySelector("#addcardbutton");
 const profilePicPopup = document.querySelector(".popup-profilepic");
 const profileImage = document.querySelector(".profile__image");
 
 export function openProfilePopup() {
-  profileForm.reset();
   username.value = profileTitle.textContent;
   usernameInfo.value = profileSubtitle.textContent;
   openPopup(profilePopup);
@@ -52,10 +51,12 @@ export function openEditProfilePic() {
   openPopup(profilePicPopup);
 }
 
-function renderLoading(isLoading, someButton) {
-  if (isLoading) {
-    someButton.textContent = "Сохранение...";
-  } else {
-    someButton.textContent = "Сохранить";
-  }
-}
+function renderLoading(isLoading, someButton) { 
+  if (isLoading) { 
+    someButton.textContent = "Сохранение..."; 
+  } else if (someButton === cardSubmitButton) { 
+    someButton.textContent = "Создать"; 
+  } else { 
+    someButton.textContent = "Сохранить"; 
+  } 
+} 

@@ -46,6 +46,7 @@ export function createCard({name, link, _id, owner, likes}, myId) {
         fetchDeleteCard(_id)
           .then(() => {
             cardElement.remove();
+            closePopup(deleteCardPopup);
           })
           .catch((err) => console.log(err));
       });
@@ -113,7 +114,6 @@ export function openDeleteCardPopup(onConfirm) {
 
 export function handleDeleteCardButtonClick() {
   deleteCardButton.onConfirm();
-  closePopup(deleteCardPopup);
 }
 
 function renderLoading(isLoading, someButton) {
