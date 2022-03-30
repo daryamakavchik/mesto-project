@@ -1,26 +1,3 @@
-import {
-  renderLoading,
-  profileSubmitButton,
-  cardSubmitButton,
-  profilePicSubmitButton,
-  username,
-  usernameInfo,
-  profileTitle,
-  profileSubtitle,
-  profilePicPopup,
-  addCardPopup,
-  addCardForm,
-  placeInput,
-  imageInput,
-} from "./modal.js";
-import { createCard } from "./card.js";
-import { closePopup } from "./utils.js";
-
-const elements = document.querySelector(".elements");
-const profileImage = document.querySelector(".profile__image");
-const placename = placeInput.value;
-const imagelink = imageInput.value;
-
 const config = {
   baseUrl: "https://nomoreparties.co/v1/plus-cohort-8",
   headers: {
@@ -36,24 +13,11 @@ const renderError = function (res) {
   return Promise.reject(`Ошибка: ${res.status}`);
 };
 
-const catchError = function (err) {
-  console.log(err);
-};
-
 export const fetchGetUserInfo = () => {
   return fetch(`${config.baseUrl}/users/me`, {
     method: "GET",
     headers: config.headers,
-  })
-    .then(renderError)
-    .then((data) => {
-      profileTitle.textContent = data.name;
-      profileSubtitle.textContent = data.about;
-      profileImage.src = data.avatar;
-      const myId = data._id;
-      fetchInitialCards(myId);
-    })
-    .catch(catchError);
+  }).then(renderError);
 };
 
 export const fetchSetUserInfo = (userName, userInfo) => {
@@ -64,39 +28,14 @@ export const fetchSetUserInfo = (userName, userInfo) => {
       name: userName,
       about: userInfo,
     }),
-  })
-    .then(renderError)
-    .then(() => {
-      profileTitle.textContent = username.value;
-      profileSubtitle.textContent = usernameInfo.value;
-      closePopup(profilePopup);
-    })
-    .catch(catchError)
-    .finally(() => renderLoading(false, profileSubmitButton));
+  }).then(renderError);
 };
 
-export const fetchInitialCards = (myId) => {
+export const fetchInitialCards = () => {
   return fetch(`${config.baseUrl}/cards`, {
     method: "GET",
     headers: config.headers,
-  })
-    .then(renderError)
-    .then((data) => {
-      return data.map((card) =>
-        createCard(
-          card.name,
-          card.link,
-          card._id,
-          card.owner._id,
-          card.likes,
-          myId
-        )
-      );
-    })
-    .then((finishedcards) => {
-      elements.prepend(...finishedcards);
-    })
-    .catch(catchError);
+  }).then(renderError);
 };
 
 export const fetchSetAvatar = (link) => {
@@ -106,15 +45,7 @@ export const fetchSetAvatar = (link) => {
     body: JSON.stringify({
       avatar: link,
     }),
-  })
-    .then(renderError)
-    .then((data) => {
-      renderLoading(true, profilePicSubmitButton);
-      profileImage.src = data.avatar;
-      closePopup(profilePicPopup);
-    })
-    .catch(catchError)
-    .finally(() => renderLoading(false, profilePicSubmitButton));
+  }).then(renderError);
 };
 
 export const fetchAddNewCard = (placename, imagelink) => {
@@ -126,28 +57,7 @@ export const fetchAddNewCard = (placename, imagelink) => {
       link: `${imagelink}`,
     }),
   })
-    .then(renderError)
-    .then((card) => {
-      return createCard(
-        card.name,
-        card.link,
-        card._id,
-        card.owner_id,
-        card.likes,
-        card.owner_id
-      );
-    })
-    .then((finishedcard) => {
-      elements.prepend(finishedcard);
-    })
-    .then(() => {
-      closePopup(addCardPopup);
-      addCardForm.reset();
-      cardSubmitButton.classList.add("form__button-submit_disabled");
-      cardSubmitButton.disabled = true;
-    })
-    .catch(catchError)
-    .finally(() => renderLoading(false, cardSubmitButton));
+    .then(renderError);
 };
 
 export const fetchDeleteCard = (id) => {
@@ -157,14 +67,7 @@ export const fetchDeleteCard = (id) => {
   }).then(renderError);
 };
 
-export const fetchHandleLikes = (
-  id,
-  method,
-  likes,
-  cardLikes,
-  cardLikeButton,
-  myId
-) => {
+export const fetchHandleLikes = (id, method) => {
   return fetch(`${config.baseUrl}/cards/likes/${id}`, {
     method: method,
     headers: config.headers,

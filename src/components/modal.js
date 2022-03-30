@@ -1,3 +1,5 @@
+
+import { createCard } from "./card";
 import { openPopup, closePopup } from "./utils.js";
 import { fetchSetAvatar, fetchSetUserInfo, fetchAddNewCard } from "./api.js";
 
@@ -18,6 +20,12 @@ const profilePicSubmitButton = document.querySelector(
 );
 const addCardForm = document.querySelector("#addcardform");
 const profilePicPopup = document.querySelector(".popup-profilepic");
+const deleteCardPopup = document.querySelector(".popup-delete");
+const deleteCardButton = document.querySelector("#deletecardbutton");
+
+const profileImage = document.querySelector(".profile__image");
+
+const elements = document.querySelector(".elements");
 
 function openProfilePopup() {
   username.value = profileTitle.textContent;
@@ -28,7 +36,14 @@ function openProfilePopup() {
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   renderLoading(true, profileSubmitButton);
-  fetchSetUserInfo(username.value, usernameInfo.value);
+  fetchSetUserInfo(username.value, usernameInfo.value)
+    .then(() => {
+      profileTitle.textContent = username.value;
+      profileSubtitle.textContent = usernameInfo.value;
+      closePopup(profilePopup);
+    })
+    .catch((err) => console.log(err))
+    .finally(() => renderLoading(false, profileSubmitButton));
 }
 
 function openAddCardPopup() {
@@ -38,12 +53,40 @@ function openAddCardPopup() {
 function handleAddCardFormSubmit(evt) {
   evt.preventDefault();
   renderLoading(true, cardSubmitButton);
-  fetchAddNewCard(placeInput.value, imageInput.value);
+  fetchAddNewCard(placeInput.value, imageInput.value)
+    .then((card) => {
+      return createCard(
+        card.name,
+        card.link,
+        card._id,
+        card.owner._id,
+        card.likes,
+        card.owner._id
+      );
+    })
+    .then((finishedcard) => {
+      elements.prepend(finishedcard);
+    })
+    .then(() => {
+      closePopup(addCardPopup);
+      addCardForm.reset();
+      cardSubmitButton.classList.add("form__button-submit_disabled");
+      cardSubmitButton.disabled = true;
+    })
+    .catch((err) => console.log(err))
+    .finally(() => renderLoading(false, cardSubmitButton));
 }
 
 function handleEditProfilePic(evt) {
   evt.preventDefault();
-  fetchSetAvatar(pictureLink.value);
+  renderLoading(true, profilePicSubmitButton);
+  fetchSetAvatar(pictureLink.value)
+    .then((data) => {
+      profileImage.src = data.avatar;
+      closePopup(profilePicPopup);
+    })
+    .catch((err) => console.log(err))
+    .finally(() => renderLoading(false, profilePicSubmitButton));
 }
 
 function openImagePopup() {
@@ -52,6 +95,16 @@ function openImagePopup() {
 
 function openEditProfilePic() {
   openPopup(profilePicPopup);
+}
+
+deleteCardButton.addEventListener('click', () => {
+  deleteCardButton.onConfirm();
+  closePopup(deleteCardPopup);
+});
+
+function openDeleteCardPopup(onConfirm){
+  deleteCardButton.onConfirm = onConfirm;
+  openPopup(deleteCardPopup);
 }
 
 function renderLoading(isLoading, someButton) {
@@ -73,6 +126,7 @@ export {
   openEditProfilePic,
   handleEditProfilePic,
   renderLoading,
+  openDeleteCardPopup,
   profileSubmitButton,
   cardSubmitButton,
   profilePicSubmitButton,
@@ -81,8 +135,8 @@ export {
   profileTitle,
   profileSubtitle,
   profilePicPopup,
-  addCardPopup, 
-  addCardForm, 
-  placeInput, 
-  imageInput
+  addCardPopup,
+  addCardForm,
+  placeInput,
+  imageInput,
 };

@@ -1,5 +1,6 @@
 import "../pages/index.css";
-import { fetchGetUserInfo } from "./api.js";
+import { fetchGetUserInfo, fetchInitialCards } from "./api.js";
+import { createCard } from "./card";
 import {
   openProfilePopup,
   handleProfileFormSubmit,
@@ -15,13 +16,44 @@ const popups = document.querySelectorAll(".popup");
 const profileForm = document.querySelector("#profileform");
 const editProfileButton = document.querySelector(".profile__edit-button");
 
+const profileTitle = document.querySelector(".profile__title");
+const profileSubtitle = document.querySelector(".profile__subtitle");
+const profileImage = document.querySelector(".profile__image");
+
 const addCardForm = document.querySelector("#addcardform");
 const addCardButton = document.querySelector(".profile__add-button");
 
 const editProfilePicForm = document.querySelector("#profilepicform");
 const editProfilePicButton = document.querySelector("#editprofilepicbutton");
 
-fetchGetUserInfo();
+const elements = document.querySelector(".elements");
+
+fetchGetUserInfo()
+  .then((data) => {
+    profileTitle.textContent = data.name;
+    profileSubtitle.textContent = data.about;
+    profileImage.src = data.avatar;
+    const myId = data._id;
+    fetchInitialCards()
+      .then((data) => {
+        return data.map((card) =>
+          createCard(
+            card.name,
+            card.link,
+            card._id,
+            card.owner._id,
+            card.likes,
+            myId
+          )
+        );
+      })
+      .then((finishedcards) => {
+        elements.prepend(...finishedcards);
+      })
+      .catch((err) => console.log(err));
+  })
+  .catch((err) => console.log(err));
+
 enableValidation({
   formSelector: ".form",
   inputSelector: ".form__input",

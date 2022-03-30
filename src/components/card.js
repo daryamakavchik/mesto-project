@@ -1,11 +1,11 @@
 import { fetchHandleLikes, fetchDeleteCard } from "./api.js";
-import { openImagePopup } from "./modal.js";
+import { openImagePopup, openDeleteCardPopup } from "./modal.js";
 
 const cardTemplate = document.querySelector("#cardtemplate").content;
 const popupImage = document.querySelector(".popup-image__image");
 const popupImageCaption = document.querySelector(".popup-image__caption");
 
-function createCard(name, link, id, ownerid, likes, myId) {
+export function createCard(name, link, id, ownerid, likes, myId) {
   const cardElement = cardTemplate
     .querySelector(".elements__element")
     .cloneNode(true);
@@ -29,11 +29,13 @@ function createCard(name, link, id, ownerid, likes, myId) {
   if (ownerid === myId) {
     cardDeleteButton.style.display = "block";
     cardDeleteButton.addEventListener("click", function cardDelete(evt) {
-      fetchDeleteCard(id)
-        .then(() => {
-          evt.target.closest(".elements__element").remove();
-        })
-        .catch((err) => console.log(err));
+      openDeleteCardPopup(() => {
+        fetchDeleteCard(id)
+          .then(() => {
+            evt.target.closest(".elements__element").remove();
+          })
+          .catch((err) => console.log(err));
+      });
     });
   } else {
     cardDeleteButton.style.display = "none";
@@ -49,7 +51,7 @@ function createCard(name, link, id, ownerid, likes, myId) {
   cardLikeButton.addEventListener("click", function handleLikes() {
     const myLike = likes.find((like) => like._id === myId);
     const method = myLike !== undefined ? "DELETE" : "PUT";
-    fetchHandleLikes(id, method, likes, cardLikes, cardLikeButton, myId)
+    fetchHandleLikes(id, method)
       .then((data) => {
         likes = data.likes;
         cardLikes.textContent = `${likes.length}`;
@@ -60,10 +62,8 @@ function createCard(name, link, id, ownerid, likes, myId) {
           cardLikeButton.classList.remove("elements__icon_active");
         }
       })
-      .catch(catchError);
+      .catch((err) => console.log(err));
   });
 
   return cardElement;
 }
-
-export { createCard };
