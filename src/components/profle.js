@@ -2,6 +2,7 @@
 import { openPopup, closePopup } from "./utils.js";
 import { fetchSetAvatar, fetchSetUserInfo } from "./api.js";
 
+const profileForm = document.querySelector("#profileform");
 const profileTitle = document.querySelector(".profile__title");
 const profileSubtitle = document.querySelector(".profile__subtitle");
 const username = document.querySelector("#username");
@@ -18,6 +19,7 @@ const profileImage = document.querySelector(".profile__image");
 export function openProfilePopup() {
   username.value = profileTitle.textContent;
   usernameInfo.value = profileSubtitle.textContent;
+  profileForm.reset();
   openPopup(profilePopup);
 }
 
