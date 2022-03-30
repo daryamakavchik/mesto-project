@@ -56,8 +56,7 @@ export const fetchAddNewCard = (placename, imagelink) => {
       name: placename,
       link: `${imagelink}`,
     }),
-  })
-    .then(renderError);
+  }).then(renderError);
 };
 
 export const fetchDeleteCard = (id) => {

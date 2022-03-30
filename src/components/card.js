@@ -27,7 +27,6 @@ export function createCard(name, link, id, ownerid, likes, myId) {
   }
 
   if (ownerid === myId) {
-    cardDeleteButton.style.display = "block";
     cardDeleteButton.addEventListener("click", function cardDelete() {
       openDeleteCardPopup(() => {
         fetchDeleteCard(id)
