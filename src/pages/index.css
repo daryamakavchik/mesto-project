@@ -80,10 +80,6 @@
 
 @import url(../blocks/form/__button-delete/form__button-delete.css);
 
-@import url(../blocks/popup/__add-card/popup__add-card.css);
-
-@import url(../blocks/popup/__add-card/_opened/popup__add-card_opened.css);
-
 @import url(../blocks/popup-image/popup-image.css);
 
 @import url(../blocks/popup-image/__content/popup-image__content.css);
