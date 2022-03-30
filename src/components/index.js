@@ -3,13 +3,13 @@ import { fetchGetUserInfo, fetchInitialCards } from "./api.js";
 import { createCard,
   handleAddCardFormSubmit,
   handleDeleteCardButtonClick,
-  openAddCardPopup } from "./card";
+  openAddCardPopup } from "./card.js";
 import {
   openProfilePopup,
   handleProfileFormSubmit,
   openEditProfilePic,
   handleEditProfilePic,
-} from "./modal.js";
+} from "./profle.js";
 import { enableValidation } from "./validate.js";
 import { closePopup } from "./utils.js";
 

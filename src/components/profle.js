@@ -15,13 +15,13 @@ const profilePicSubmitButton = document.querySelector(
 const profilePicPopup = document.querySelector(".popup-profilepic");
 const profileImage = document.querySelector(".profile__image");
 
-function openProfilePopup() {
+export function openProfilePopup() {
   username.value = profileTitle.textContent;
   usernameInfo.value = profileSubtitle.textContent;
   openPopup(profilePopup);
 }
 
-function handleProfileFormSubmit(evt) {
+export function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   renderLoading(true, profileSubmitButton);
   fetchSetUserInfo(username.value, usernameInfo.value)
@@ -34,7 +34,7 @@ function handleProfileFormSubmit(evt) {
     .finally(() => renderLoading(false, profileSubmitButton));
 }
 
-function handleEditProfilePic(evt) {
+export function handleEditProfilePic(evt) {
   evt.preventDefault();
   renderLoading(true, profilePicSubmitButton);
   fetchSetAvatar(pictureLink.value)
@@ -46,7 +46,7 @@ function handleEditProfilePic(evt) {
     .finally(() => renderLoading(false, profilePicSubmitButton));
 }
 
-function openEditProfilePic() {
+export function openEditProfilePic() {
   openPopup(profilePicPopup);
 }
 
@@ -57,11 +57,3 @@ function renderLoading(isLoading, someButton) {
     someButton.textContent = "Сохранить";
   }
 }
-
-export {
-  openProfilePopup,
-  handleProfileFormSubmit,
-  openEditProfilePic,
-  handleEditProfilePic,
-  renderLoading,
-};
