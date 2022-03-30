@@ -28,29 +28,23 @@ const editProfilePicButton = document.querySelector("#editprofilepicbutton");
 
 const elements = document.querySelector(".elements");
 
-fetchGetUserInfo()
-  .then((data) => {
-    profileTitle.textContent = data.name;
-    profileSubtitle.textContent = data.about;
-    profileImage.src = data.avatar;
-    const myId = data._id;
-    fetchInitialCards()
-      .then((data) => {
-        return data.map((card) =>
-          createCard(
-            card.name,
-            card.link,
-            card._id,
-            card.owner._id,
-            card.likes,
-            myId
-          )
-        );
-      })
-      .then((finishedcards) => {
-        elements.prepend(...finishedcards);
-      })
-      .catch((err) => console.log(err));
+Promise.all([fetchGetUserInfo(), fetchInitialCards()])
+  .then(([userData, cardsData]) => {
+    profileTitle.textContent = userData.name;
+    profileSubtitle.textContent = userData.about;
+    profileImage.src = userData.avatar;
+
+    const cards = cardsData.map((card) =>
+      createCard(
+        card.name,
+        card.link,
+        card._id,
+        card.owner._id,
+        card.likes,
+        userData._id
+      )
+    );
+    elements.prepend(...cards);
   })
   .catch((err) => console.log(err));
 

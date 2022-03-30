@@ -28,11 +28,11 @@ export function createCard(name, link, id, ownerid, likes, myId) {
 
   if (ownerid === myId) {
     cardDeleteButton.style.display = "block";
-    cardDeleteButton.addEventListener("click", function cardDelete(evt) {
+    cardDeleteButton.addEventListener("click", function cardDelete() {
       openDeleteCardPopup(() => {
         fetchDeleteCard(id)
           .then(() => {
-            evt.target.closest(".elements__element").remove();
+            cardElement.remove();
           })
           .catch((err) => console.log(err));
       });
