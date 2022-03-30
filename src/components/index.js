@@ -1,12 +1,13 @@
 import "../pages/index.css";
 import { fetchGetUserInfo, fetchInitialCards } from "./api.js";
-import { createCard } from "./card";
+import { createCard,
+  handleAddCardFormSubmit,
+  handleDeleteCardButtonClick,
+  openAddCardPopup } from "./card";
 import {
   openProfilePopup,
   handleProfileFormSubmit,
-  openAddCardPopup,
   openEditProfilePic,
-  handleAddCardFormSubmit,
   handleEditProfilePic,
 } from "./modal.js";
 import { enableValidation } from "./validate.js";
@@ -15,6 +16,8 @@ import { closePopup } from "./utils.js";
 const popups = document.querySelectorAll(".popup");
 const profileForm = document.querySelector("#profileform");
 const editProfileButton = document.querySelector(".profile__edit-button");
+const editProfilePicForm = document.querySelector("#profilepicform");
+const editProfilePicButton = document.querySelector("#editprofilepicbutton");
 
 const profileTitle = document.querySelector(".profile__title");
 const profileSubtitle = document.querySelector(".profile__subtitle");
@@ -22,9 +25,7 @@ const profileImage = document.querySelector(".profile__image");
 
 const addCardForm = document.querySelector("#addcardform");
 const addCardButton = document.querySelector(".profile__add-button");
-
-const editProfilePicForm = document.querySelector("#profilepicform");
-const editProfilePicButton = document.querySelector("#editprofilepicbutton");
+const deleteCardButton = document.querySelector("#deletecardbutton");
 
 const elements = document.querySelector(".elements");
 
@@ -61,9 +62,9 @@ popups.forEach((popup) => {
 
 profileForm.addEventListener("submit", handleProfileFormSubmit);
 editProfileButton.addEventListener("click", openProfilePopup);
+editProfilePicForm.addEventListener("submit", handleEditProfilePic);
+editProfilePicButton.addEventListener("click", openEditProfilePic);
 
 addCardForm.addEventListener("submit", handleAddCardFormSubmit);
 addCardButton.addEventListener("click", openAddCardPopup);
-
-editProfilePicForm.addEventListener("submit", handleEditProfilePic);
-editProfilePicButton.addEventListener("click", openEditProfilePic);
+deleteCardButton.addEventListener('click', handleDeleteCardButtonClick);

@@ -1,9 +1,23 @@
-import { fetchHandleLikes, fetchDeleteCard } from "./api.js";
-import { openImagePopup, openDeleteCardPopup } from "./modal.js";
+import { fetchHandleLikes, fetchAddNewCard, fetchDeleteCard } from "./api.js";
+import { openPopup, closePopup } from "./utils.js";
 
-const cardTemplate = document.querySelector("#cardtemplate").content;
 const popupImage = document.querySelector(".popup-image__image");
 const popupImageCaption = document.querySelector(".popup-image__caption");
+
+const cardTemplate = document.querySelector("#cardtemplate").content;
+
+const addCardPopup = document.querySelector(".popup__add-card");
+const addCardForm = document.querySelector("#addcardform");
+const imageInput = document.querySelector("#imagelink");
+const placeInput = document.querySelector("#placename");
+const cardSubmitButton = document.querySelector("#addcardbutton");
+
+const imagePopup = document.querySelector(".popup-image");
+
+const elements = document.querySelector(".elements");
+
+const deleteCardPopup = document.querySelector(".popup-delete");
+const deleteCardButton = document.querySelector("#deletecardbutton");
 
 export function createCard({name, link, _id, owner, likes}, myId) {
   const cardElement = cardTemplate
@@ -65,4 +79,49 @@ export function createCard({name, link, _id, owner, likes}, myId) {
   });
 
   return cardElement;
+}
+
+export function handleAddCardFormSubmit(evt) {
+  evt.preventDefault();
+  renderLoading(true, cardSubmitButton);
+  fetchAddNewCard(placeInput.value, imageInput.value)
+    .then((card) => {
+      elements.prepend(createCard(card, card.owner._id));
+    })
+    .then(() => {
+      closePopup(addCardPopup);
+      addCardForm.reset();
+      cardSubmitButton.classList.add("form__button-submit_disabled");
+      cardSubmitButton.disabled = true;
+    })
+    .catch((err) => console.log(err))
+    .finally(() => renderLoading(false, cardSubmitButton));
+}
+
+export function openAddCardPopup() {
+  openPopup(addCardPopup);
+}
+
+export function openImagePopup() {
+  openPopup(imagePopup);
+}
+
+export function openDeleteCardPopup(onConfirm) {
+  deleteCardButton.onConfirm = onConfirm;
+  openPopup(deleteCardPopup);
+}
+
+export function handleDeleteCardButtonClick() {
+  deleteCardButton.onConfirm();
+  closePopup(deleteCardPopup);
+}
+
+function renderLoading(isLoading, someButton) {
+  if (isLoading) {
+    someButton.textContent = "Сохранение...";
+  } else if (someButton === cardSubmitButton) {
+    someButton.textContent = "Создать";
+  } else {
+    someButton.textContent = "Сохранить";
+  }
 }
