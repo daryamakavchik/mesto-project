@@ -1,5 +1,5 @@
 import "../pages/index.css";
-import { getUserInfo } from "./app.js";
+import { fetchGetUserInfo } from "./api.js";
 import {
   openProfilePopup,
   handleProfileFormSubmit,
@@ -9,7 +9,7 @@ import {
   handleEditProfilePic,
 } from "./modal.js";
 import { enableValidation } from "./validate.js";
-import { closePopup } from "./utils";
+import { closePopup } from "./utils.js";
 
 const popups = document.querySelectorAll(".popup");
 const profileForm = document.querySelector("#profileform");
@@ -21,7 +21,7 @@ const addCardButton = document.querySelector(".profile__add-button");
 const editProfilePicForm = document.querySelector("#profilepicform");
 const editProfilePicButton = document.querySelector("#editprofilepicbutton");
 
-getUserInfo();
+fetchGetUserInfo();
 enableValidation({
   formSelector: ".form",
   inputSelector: ".form__input",

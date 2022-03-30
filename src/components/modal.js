@@ -1,5 +1,5 @@
 import { openPopup, closePopup } from "./utils.js";
-import { saveNewProfilePic, addNewCard, setUserInfo } from "./app.js";
+import { fetchSetAvatar, fetchSetUserInfo, fetchAddNewCard } from "./api.js";
 
 const profileTitle = document.querySelector(".profile__title");
 const profileSubtitle = document.querySelector(".profile__subtitle");
@@ -28,10 +28,7 @@ function openProfilePopup() {
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   renderLoading(true, profileSubmitButton);
-  profileTitle.textContent = username.value;
-  profileSubtitle.textContent = usernameInfo.value;
-  setUserInfo(username.value, usernameInfo.value);
-  closePopup(profilePopup);
+  fetchSetUserInfo(username.value, usernameInfo.value);
 }
 
 function openAddCardPopup() {
@@ -41,18 +38,12 @@ function openAddCardPopup() {
 function handleAddCardFormSubmit(evt) {
   evt.preventDefault();
   renderLoading(true, cardSubmitButton);
-  addNewCard(placeInput.value, imageInput.value);
-  closePopup(addCardPopup);
-  addCardForm.reset();
-  cardSubmitButton.classList.add("form__button-submit_disabled");
-  cardSubmitButton.disabled = true;
+  fetchAddNewCard(placeInput.value, imageInput.value);
 }
 
 function handleEditProfilePic(evt) {
   evt.preventDefault();
-  renderLoading(true, profilePicSubmitButton);
-  saveNewProfilePic(pictureLink.value);
-  closePopup(profilePicPopup);
+  fetchSetAvatar(pictureLink.value);
 }
 
 function openImagePopup() {
@@ -89,4 +80,9 @@ export {
   usernameInfo,
   profileTitle,
   profileSubtitle,
+  profilePicPopup,
+  addCardPopup, 
+  addCardForm, 
+  placeInput, 
+  imageInput
 };

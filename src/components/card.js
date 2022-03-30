@@ -1,4 +1,4 @@
-import { fetchDeleteCard, fetchHandleLikes } from "./api.js";
+import { fetchHandleLikes, fetchDeleteCard } from "./api.js";
 import { openImagePopup } from "./modal.js";
 
 const cardTemplate = document.querySelector("#cardtemplate").content;
@@ -28,9 +28,12 @@ function createCard(name, link, id, ownerid, likes, myId) {
 
   if (ownerid === myId) {
     cardDeleteButton.style.display = "block";
-    cardDeleteButton.addEventListener("click", function deleteCard(evt) {
-      evt.target.closest(".elements__element").remove();
-      fetchDeleteCard(id);
+    cardDeleteButton.addEventListener("click", function cardDelete(evt) {
+      fetchDeleteCard(id)
+        .then(() => {
+          evt.target.closest(".elements__element").remove();
+        })
+        .catch((err) => console.log(err));
     });
   } else {
     cardDeleteButton.style.display = "none";
@@ -46,16 +49,18 @@ function createCard(name, link, id, ownerid, likes, myId) {
   cardLikeButton.addEventListener("click", function handleLikes() {
     const myLike = likes.find((like) => like._id === myId);
     const method = myLike !== undefined ? "DELETE" : "PUT";
-    fetchHandleLikes(id, method).then((data) => {
-      likes = data.likes;
-      cardLikes.textContent = `${likes.length}`;
+    fetchHandleLikes(id, method, likes, cardLikes, cardLikeButton, myId)
+      .then((data) => {
+        likes = data.likes;
+        cardLikes.textContent = `${likes.length}`;
 
-      if (likes.some((like) => like._id === myId)) {
-        cardLikeButton.classList.add("elements__icon_active");
-      } else {
-        cardLikeButton.classList.remove("elements__icon_active");
-      }
-    });
+        if (likes.some((like) => like._id === myId)) {
+          cardLikeButton.classList.add("elements__icon_active");
+        } else {
+          cardLikeButton.classList.remove("elements__icon_active");
+        }
+      })
+      .catch(catchError);
   });
 
   return cardElement;
