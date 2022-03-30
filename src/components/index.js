@@ -34,16 +34,7 @@ Promise.all([fetchGetUserInfo(), fetchInitialCards()])
     profileSubtitle.textContent = userData.about;
     profileImage.src = userData.avatar;
 
-    const cards = cardsData.map((card) =>
-      createCard(
-        card.name,
-        card.link,
-        card._id,
-        card.owner._id,
-        card.likes,
-        userData._id
-      )
-    );
+    const cards = cardsData.map((card) => createCard(card, userData._id));
     elements.prepend(...cards);
   })
   .catch((err) => console.log(err));

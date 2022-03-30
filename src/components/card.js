@@ -5,7 +5,7 @@ const cardTemplate = document.querySelector("#cardtemplate").content;
 const popupImage = document.querySelector(".popup-image__image");
 const popupImageCaption = document.querySelector(".popup-image__caption");
 
-export function createCard(name, link, id, ownerid, likes, myId) {
+export function createCard({name, link, id, ownerid, likes}, myId) {
   const cardElement = cardTemplate
     .querySelector(".elements__element")
     .cloneNode(true);

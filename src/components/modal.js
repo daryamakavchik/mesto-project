@@ -46,37 +46,6 @@ function handleProfileFormSubmit(evt) {
     .finally(() => renderLoading(false, profileSubmitButton));
 }
 
-function openAddCardPopup() {
-  openPopup(addCardPopup);
-}
-
-function handleAddCardFormSubmit(evt) {
-  evt.preventDefault();
-  renderLoading(true, cardSubmitButton);
-  fetchAddNewCard(placeInput.value, imageInput.value)
-    .then((card) => {
-      return createCard(
-        card.name,
-        card.link,
-        card._id,
-        card.owner._id,
-        card.likes,
-        card.owner._id
-      );
-    })
-    .then((finishedcard) => {
-      elements.prepend(finishedcard);
-    })
-    .then(() => {
-      closePopup(addCardPopup);
-      addCardForm.reset();
-      cardSubmitButton.classList.add("form__button-submit_disabled");
-      cardSubmitButton.disabled = true;
-    })
-    .catch((err) => console.log(err))
-    .finally(() => renderLoading(false, cardSubmitButton));
-}
-
 function handleEditProfilePic(evt) {
   evt.preventDefault();
   renderLoading(true, profilePicSubmitButton);
@@ -89,12 +58,38 @@ function handleEditProfilePic(evt) {
     .finally(() => renderLoading(false, profilePicSubmitButton));
 }
 
+function openEditProfilePic() {
+  openPopup(profilePicPopup);
+}
+
+function handleAddCardFormSubmit(evt) {
+  evt.preventDefault();
+  renderLoading(true, cardSubmitButton);
+  fetchAddNewCard(placeInput.value, imageInput.value)
+    .then((card) => {
+      elements.prepend(createCard(card, card.owner._id));
+    })
+    .then(() => {
+      closePopup(addCardPopup);
+      addCardForm.reset();
+      cardSubmitButton.classList.add("form__button-submit_disabled");
+      cardSubmitButton.disabled = true;
+    })
+    .catch((err) => console.log(err))
+    .finally(() => renderLoading(false, cardSubmitButton));
+}
+
+function openAddCardPopup() {
+  openPopup(addCardPopup);
+}
+
 function openImagePopup() {
   openPopup(imagePopup);
 }
 
-function openEditProfilePic() {
-  openPopup(profilePicPopup);
+function openDeleteCardPopup(onConfirm){
+  deleteCardButton.onConfirm = onConfirm;
+  openPopup(deleteCardPopup);
 }
 
 deleteCardButton.addEventListener('click', () => {
@@ -102,10 +97,6 @@ deleteCardButton.addEventListener('click', () => {
   closePopup(deleteCardPopup);
 });
 
-function openDeleteCardPopup(onConfirm){
-  deleteCardButton.onConfirm = onConfirm;
-  openPopup(deleteCardPopup);
-}
 
 function renderLoading(isLoading, someButton) {
   if (isLoading) {
